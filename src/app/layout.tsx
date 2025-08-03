@@ -11,6 +11,7 @@ import type { Metadata } from "next";
 import NextTopLoader from "nextjs-toploader";
 import type { PropsWithChildren } from "react";
 import { Providers } from "./providers";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: {
@@ -24,6 +25,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <Script
+          src="https://gw.alipayobjects.com/os/antv/gi-sdk/2.4.3/dist/index.umd.min.js"
+          strategy="beforeInteractive"
+        />
+      </head>
       <body>
         <Providers>
           <NextTopLoader color="#5750F1" showSpinner={false} />

@@ -1,10 +1,6 @@
 {
   "compilerOptions": {
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -22,9 +18,7 @@
       }
     ],
     "paths": {
-      "@/*": [
-        "./src/*"
-      ]
+      "@/*": ["./src/*"]
     },
     "target": "ES2017"
   },
@@ -32,9 +26,15 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "src/components/sigma/edge-curve/interactions/Interactions.jsx",
+    "src/components/antv-g6/behavior/OptimizeViewportTransform.tsxx",
+    "src/components/antv-g6/behavior/OptimizeViewportTransform.tsxx",
+    "src/components/sigma/edge-curve/arrow-heads/ArrowHeads.js",
+    "src/components/sigma/edge-curve/arrow-heads/ArrowHeads.jsx",
+    "src/components/sigma/edge-curve/labels/Labels.js",
+    "src/components/antv-g6/behavior/DragNDrop.js",
+    "src/components/performance/antv-g6/canvas.js"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

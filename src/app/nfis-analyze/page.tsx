@@ -4,8 +4,15 @@ import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 // import type { Metadata } from "next";
 import React, { useState } from "react";
 import Image from "next/image";
-import FamilyTree from "@/components/nfis-analyze/family-tree/FamilyTree";
-import AssetsNode from "@/components/nfis-analyze/assets-node/AssetsNode";
+import TestingNode from "@/components/nfis-analyze/testing-node/TestingNode";
+import G6Graph from "@/components/nfis-analyze/large-node/G6Graph";
+import GraphWebGL from "@/components/nfis-analyze/large-node/GraphWebGL";
+import GraphSVG from "@/components/nfis-analyze/large-node/GraphSVG";
+import LargeDataGraph from "@/components/nfis-analyze/testing-javascript/LargeDataGraph";
+import RenderWebGL from "@/components/nfis-analyze/test-render/RenderWebGL";
+import RenderCanvas from "@/components/nfis-analyze/test-render/RenderCanvas";
+import RenderSVG from "@/components/nfis-analyze/test-render/RenderSVG";
+// import AssetsNode from "@/components/nfis-analyze/assets-node/AssetsNode";
 import CompanyHistory from "@/components/nfis-analyze/company-history/CompanyHistory";
 
 // export const metadata: Metadata = {
@@ -23,7 +30,7 @@ export default function Page() {
       case "familyTree":
         return (
           <div className="rounded-b-lg bg-white p-6 shadow-md">
-            <h2 className="mb-4 text-2xl font-semibold text-gray-800">
+            {/* <h2 className="mb-4 text-2xl font-semibold text-gray-800">
               Family Tree
             </h2>
             <p className="leading-relaxed text-gray-700">
@@ -38,7 +45,7 @@ export default function Page() {
               <li>John Doe (1900-1970) & Jane Smith (1905-1980)</li>
               <li>Children: Michael Doe (1930-2000), Emily Doe (1935-)</li>
               <li>Grandchildren: Sarah Doe (1960-), David Doe (1965-)</li>
-            </ul>
+            </ul> */}
             {/* <Image
               src="https://placehold.co/600x300/F0F4F8/6B7280?text=Family+Tree+Diagram"
               alt="Family Tree Diagram Placeholder"
@@ -47,15 +54,16 @@ export default function Page() {
               className="mt-6 h-auto w-full rounded-lg shadow-sm"
               // onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/600x300/F0F4F8/6B7280?text=Image+Load+Error"; }}
             /> */}
-            <div className="pt-7" style={{ width: "100%", height: "70vh" }}>
-              <FamilyTree />
+            <div className="h-[800px] w-full pt-7">
+              <TestingNode />
+              {/* <MyGraphApp /> */}
             </div>
           </div>
         );
       case "assets":
         return (
           <div className="rounded-b-lg bg-white p-6 shadow-md">
-            <h2 className="mb-4 text-2xl font-semibold text-gray-800">
+            {/* <h2 className="mb-4 text-2xl font-semibold text-gray-800">
               Assets
             </h2>
             <p className="leading-relaxed text-gray-700">
@@ -117,18 +125,21 @@ export default function Page() {
                   position: "relative",
                 }}
               >
-                <AssetsNode />
-              </div>
-            </div>
-            {/* <div className="pt-7" style={{ width: "100px", height: "50vh" }}>
-              <AssetsNode />
+                {/* <AssetsNode /> */}
+            {/* </div>
             </div> */}
+            <div className="h-[800px] w-full pt-7">
+              {/* <GraphWebGL /> */}
+              <LargeDataGraph />
+              {/* <G6Graph /> */}
+              {/* <MyGraphApp /> */}
+            </div>
           </div>
         );
       case "companyHistory":
         return (
           <div className="rounded-b-lg bg-white p-6 shadow-md">
-            <h2 className="mb-4 text-2xl font-semibold text-gray-800">
+            {/* <h2 className="mb-4 text-2xl font-semibold text-gray-800">
               Company History
             </h2>
             <p className="leading-relaxed text-gray-700">
@@ -154,7 +165,7 @@ export default function Page() {
               <li>
                 <strong>2023:</strong> Achieved [Significant Milestone/Revenue]
               </li>
-            </ul>
+            </ul> */}
             {/* <Image
               src="https://placehold.co/600x300/F0F4F8/6B7280?text=Company+Timeline"
               alt="Company Timeline Placeholder"
@@ -163,8 +174,9 @@ export default function Page() {
               className="mt-6 h-auto w-full rounded-lg shadow-sm"
               // onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/600x300/F0F4F8/6B7280?text=Image+Load+Error"; }}
             /> */}
-            <div className="pt-7" style={{ width: "100%", height: "70vh" }}>
-              <CompanyHistory />
+            <div className="h-[800px] w-full pt-7">
+              <RenderSVG />
+              {/* <RenderWebGL /> */}
             </div>
           </div>
         );
@@ -224,7 +236,7 @@ export default function Page() {
                 } flex-1 focus:outline-none`}
                 onClick={() => setActiveTab("familyTree")}
               >
-                Family Tree
+                Basic Node
               </button>
 
               {/* Assets Tab Button */}
@@ -236,7 +248,7 @@ export default function Page() {
                 } flex-1 focus:outline-none`}
                 onClick={() => setActiveTab("assets")}
               >
-                Assets
+                Large Data
               </button>
 
               {/* Company History Tab Button */}
@@ -248,7 +260,7 @@ export default function Page() {
                 } flex-1 focus:outline-none`}
                 onClick={() => setActiveTab("companyHistory")}
               >
-                Company History
+                Other
               </button>
             </div>
 

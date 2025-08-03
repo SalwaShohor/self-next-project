@@ -19,15 +19,15 @@ export const initialNodes: Node[] = [
   },
 
   // Children of parents
-  { id: "child1", data: { label: "Alice" }, position: { x: 100, y: 150 } },
+  { id: "child1", data: { label: "Andy" }, position: { x: 100, y: 150 } },
   { id: "child2", data: { label: "Bob" }, position: { x: 300, y: 150 } },
-  { id: "child3", data: { label: "Cathy" }, position: { x: 500, y: 150 } },
+  { id: "child3", data: { label: "Colin" }, position: { x: 500, y: 150 } },
   { id: "child4", data: { label: "David" }, position: { x: 700, y: 150 } },
 
   // Spouses
   {
     id: "spouse1",
-    data: { label: "Alice's Spouse" },
+    data: { label: "Andy's Spouse" },
     position,
   },
   {
@@ -37,7 +37,7 @@ export const initialNodes: Node[] = [
   },
   {
     id: "spouse3",
-    data: { label: "Cathy's Spouse" },
+    data: { label: "Colin's Spouse" },
     position: { x: 500, y: 220 },
   },
   {
