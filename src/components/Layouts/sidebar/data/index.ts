@@ -78,18 +78,18 @@ export const NAV_DATA = [
         icon: Icons.User,
         items: [],
       },
-      {
-        title: "NFIS Analyze",
-        url: "/nfis-analyze",
-        icon: Icons.User,
-        items: [],
-      },
-      {
-        title: "Testing",
-        url: "/testing",
-        icon: Icons.User,
-        items: [],
-      },
+      // {
+      //   title: "NFIS Analyze",
+      //   url: "/nfis-analyze",
+      //   icon: Icons.User,
+      //   items: [],
+      // },
+      // {
+      //   title: "Testing",
+      //   url: "/testing",
+      //   icon: Icons.User,
+      //   items: [],
+      // },
       {
         title: "Forms",
         icon: Icons.Alphabet,
@@ -136,16 +136,7 @@ export const NAV_DATA = [
         icon: Icons.Calendar,
         items: [],
       },
-      {
-        title: "Behaviors",
-        icon: Icons.PieChart,
-        items: [
-          {
-            title: "OptimizeViewportTransform",
-            url: "/antv-g6/behaviors/optimize-viewport-transform",
-          },
-        ],
-      },
+
       {
         title: "UI Elements",
         icon: Icons.FourCircle,
