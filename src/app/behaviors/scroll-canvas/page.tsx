@@ -1,9 +1,18 @@
 "use client";
 
+import dynamic from "next/dynamic";
+
+const SigmaScrollCanvas = dynamic(
+  () => import("@/components/sigma/behavior/SigmaScrollCanvas"),
+  {
+    ssr: false,
+  },
+);
+
 import React, { useEffect, useState } from "react";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import AntVG6ScrollCanvas from "@/components/antv-g6/behavior/AntVG6ScrollCanvas";
-import SigmaScrollCanvas from "@/components/sigma/behavior/SigmaScrollCanvas";
+// import SigmaScrollCanvas from "@/components/sigma/behavior/SigmaScrollCanvas";
 import { ScrollCanvasTable } from "@/components/Tables/features-table/ScrollCanvasTable";
 
 export default function Page() {
@@ -13,7 +22,7 @@ export default function Page() {
     let sigmaCleanup: (() => void) | undefined;
 
     if (activeTab === "sigma") {
-      sigmaCleanup = SigmaScrollCanvas();
+      <SigmaScrollCanvas />;
     }
 
     return () => {

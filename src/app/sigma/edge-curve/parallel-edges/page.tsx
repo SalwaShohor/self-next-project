@@ -1,8 +1,17 @@
 "use client";
 
+import dynamic from "next/dynamic";
+
+const ParallelEdges = dynamic(
+  () => import("@/components/sigma/edge-curve/parallel-edges/ParallelEdges"),
+  {
+    ssr: false,
+  },
+);
+
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import React, { useState } from "react";
-import ParallelEdges from "@/components/sigma/edge-curve/parallel-edges/ParallelEdges";
+// import ParallelEdges from "@/components/sigma/edge-curve/parallel-edges/ParallelEdges";
 
 export default function Page() {
   return (

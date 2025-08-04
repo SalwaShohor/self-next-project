@@ -1,9 +1,18 @@
 "use client";
 
+import dynamic from "next/dynamic";
+
+const SigmaFocusElement = dynamic(
+  () => import("@/components/sigma/behavior/SigmaFocusElement"),
+  {
+    ssr: false,
+  },
+);
+
 import React, { useEffect, useState } from "react";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import AntVG6FocusElement from "@/components/antv-g6/behavior/AntVG6FocusElement";
-import SigmaFocusElement from "@/components/sigma/behavior/SigmaFocusElement";
+// import SigmaFocusElement from "@/components/sigma/behavior/SigmaFocusElement";
 import { FocusElementTable } from "@/components/Tables/features-table/FocusElementTable";
 
 export default function Page() {
@@ -13,7 +22,7 @@ export default function Page() {
     let sigmaCleanup: (() => void) | undefined;
 
     if (activeTab === "sigma") {
-      sigmaCleanup = SigmaFocusElement();
+      <SigmaFocusElement />;
     }
 
     return () => {

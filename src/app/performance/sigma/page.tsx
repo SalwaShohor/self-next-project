@@ -1,8 +1,18 @@
 "use client";
+
+import dynamic from "next/dynamic";
+
+const SigmaWebGL = dynamic(
+  () => import("@/components/performance/sigma/SigmaWebGL"),
+  {
+    ssr: false,
+  },
+);
+
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import React, { useState } from "react";
 import LargeDataGraph from "@/components/nfis-analyze/testing-javascript/LargeDataGraph";
-import SigmaWebGL from "@/components/performance/sigma/SigmaWebGL";
+// import SigmaWebGL from "@/components/performance/sigma/SigmaWebGL";
 import WebGL from "@/components/performance/antv-g6/WebGL";
 import SVG from "@/components/performance/antv-g6/SVG";
 

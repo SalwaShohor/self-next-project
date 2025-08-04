@@ -1,9 +1,18 @@
 "use client";
 
+import dynamic from "next/dynamic";
+
+const SigmaFixElementSize = dynamic(
+  () => import("@/components/sigma/behavior/SigmaFixElementSize"),
+  {
+    ssr: false,
+  },
+);
+
 import React, { useEffect, useState } from "react";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import AntVG6FixElementSize from "@/components/antv-g6/behavior/AntVG6FixElementSize";
-import SigmaFixElementSize from "@/components/sigma/behavior/SigmaFixElementSize";
+// import SigmaFixElementSize from "@/components/sigma/behavior/SigmaFixElementSize";
 import { FixElementSizeTable } from "@/components/Tables/features-table/FixElementSizeTable";
 
 export default function Page() {
@@ -13,7 +22,7 @@ export default function Page() {
     let sigmaCleanup: (() => void) | undefined;
 
     if (activeTab === "sigma") {
-      sigmaCleanup = SigmaFixElementSize();
+      <SigmaFixElementSize />;
     }
 
     return () => {

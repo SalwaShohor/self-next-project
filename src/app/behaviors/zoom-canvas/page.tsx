@@ -1,10 +1,23 @@
 "use client";
 
+import dynamic from "next/dynamic";
+
+const SigmaZoomCanvas = dynamic(
+  () => import("@/components/sigma/behavior/SigmaZoomCanvas"),
+  {
+    ssr: false,
+  },
+);
+
 import React, { useEffect, useState } from "react";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import AntVG6ZoomCanvas from "@/components/antv-g6/behavior/AntVG6ZoomCanvas";
-import SigmaZoomCanvas from "@/components/sigma/behavior/SigmaZoomCanvas";
+// import SigmaZoomCanvas from "@/components/sigma/behavior/SigmaZoomCanvas";
 import { ZoomCanvasTable } from "@/components/Tables/features-table/ZoomCanvasTable";
+
+// const SigmaZoomCanvas = dynamic(() => import("@/components/sigma/behavior/SigmaZoomCanvas"), {
+//   ssr: false,
+// });
 
 export default function Page() {
   const [activeTab, setActiveTab] = useState("antv-g6");
@@ -13,7 +26,7 @@ export default function Page() {
     let sigmaCleanup: (() => void) | undefined;
 
     if (activeTab === "sigma") {
-      sigmaCleanup = SigmaZoomCanvas();
+      <SigmaZoomCanvas />;
     }
 
     return () => {

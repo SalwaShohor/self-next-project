@@ -1,9 +1,18 @@
 "use client";
 
+import dynamic from "next/dynamic";
+
+const SigmaBrushSelect = dynamic(
+  () => import("@/components/sigma/behavior/SigmaBrushSelect"),
+  {
+    ssr: false,
+  },
+);
+
 import React, { useEffect, useState } from "react";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import AntVG6BrushSelect from "@/components/antv-g6/behavior/AntVG6BrushSelect";
-import SigmaBrushSelect from "@/components/sigma/behavior/SigmaBrushSelect";
+// import SigmaBrushSelect from "@/components/sigma/behavior/SigmaBrushSelect";
 import { BrushSelectTable } from "@/components/Tables/features-table/BrushSelectTable";
 
 export default function Page() {
@@ -13,7 +22,7 @@ export default function Page() {
     let sigmaCleanup: (() => void) | undefined;
 
     if (activeTab === "sigma") {
-      sigmaCleanup = SigmaBrushSelect();
+      <SigmaBrushSelect />;
     }
 
     return () => {

@@ -1,9 +1,18 @@
 "use client";
 
+import dynamic from "next/dynamic";
+
+const SigmaDragElementForce = dynamic(
+  () => import("@/components/sigma/behavior/SigmaDragElementForce"),
+  {
+    ssr: false,
+  },
+);
+
 import React, { useEffect, useState } from "react";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import AntVG6DragElementForce from "@/components/antv-g6/behavior/AntVG6DragElementForce";
-import SigmaDragElementForce from "@/components/sigma/behavior/SigmaDragElementForce";
+// import SigmaDragElementForce from "@/components/sigma/behavior/SigmaDragElementForce";
 import { DragElementForceTable } from "@/components/Tables/features-table/DragElementForceTable";
 
 export default function Page() {
@@ -13,7 +22,7 @@ export default function Page() {
     let sigmaCleanup: (() => void) | undefined;
 
     if (activeTab === "sigma") {
-      sigmaCleanup = SigmaDragElementForce();
+      <SigmaDragElementForce />;
     }
 
     return () => {

@@ -1,4 +1,4 @@
-"use client"; // Required in Next.js App Router
+"use client";
 
 import { useEffect } from "react";
 import { MultiGraph } from "graphology";

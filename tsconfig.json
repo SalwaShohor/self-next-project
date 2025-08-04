@@ -30,9 +30,9 @@
     "src/components/sigma/edge-curve/interactions/Interactions.jsx",
     "src/components/antv-g6/behavior/OptimizeViewportTransform.tsxx",
     "src/components/antv-g6/behavior/OptimizeViewportTransform.tsxx",
-    "src/components/sigma/edge-curve/arrow-heads/ArrowHeads.js",
+    "src/components/sigma/edge-curve/arrow-heads/ArrowHeads.tsx",
     "src/components/sigma/edge-curve/arrow-heads/ArrowHeads.jsx",
-    "src/components/sigma/edge-curve/labels/Labels.js",
+    "src/components/sigma/edge-curve/labels/Labels.tsx",
     "src/components/antv-g6/behavior/DragNDrop.js",
     "src/components/performance/antv-g6/canvas.js"
   ],

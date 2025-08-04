@@ -1,10 +1,19 @@
 "use client";
 
+import dynamic from "next/dynamic";
+
+const SigmaDragCanvas = dynamic(
+  () => import("@/components/sigma/behavior/SigmaDragCanvas"),
+  {
+    ssr: false,
+  },
+);
+
 import React, { useEffect, useState } from "react";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import AntVG6DragCanvas from "@/components/antv-g6/behavior/AntVG6DragCanvas";
 import TestingSigma from "@/components/sigma/edge-curve/basic-example/TestingSigma";
-import SigmaDragCanvas from "@/components/sigma/behavior/SigmaDragCanvas";
+// import SigmaDragCanvas from "@/components/sigma/behavior/SigmaDragCanvas";
 import BasicExample from "@/components/sigma/behavior/BasicExample";
 import { DragCanvasTable } from "@/components/Tables/features-table/DragCanvasTable";
 
@@ -15,7 +24,7 @@ export default function Page() {
     let sigmaCleanup: (() => void) | undefined;
 
     if (activeTab === "sigma") {
-      sigmaCleanup = SigmaDragCanvas();
+      <SigmaDragCanvas />;
     }
 
     return () => {

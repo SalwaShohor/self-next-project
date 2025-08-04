@@ -171,18 +171,6 @@ export const NAV_DATA = [
         icon: Icons.PieChart,
         items: [
           {
-            title: "Navigation",
-            url: "/behaviors/navigation",
-          },
-          {
-            title: "Selection",
-            url: "/behaviors/selection",
-          },
-          {
-            title: "Editing",
-            url: "/behaviors/editing",
-          },
-          {
             title: "Drag Canvas",
             url: "/behaviors/drag-canvas",
           },

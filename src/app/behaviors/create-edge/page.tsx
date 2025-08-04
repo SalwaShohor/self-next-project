@@ -1,9 +1,18 @@
 "use client";
 
+import dynamic from "next/dynamic";
+
+const SigmaCreateEdge = dynamic(
+  () => import("@/components/sigma/behavior/SigmaCreateEdge"),
+  {
+    ssr: false,
+  },
+);
+
 import React, { useEffect, useState } from "react";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import AntVG6CreateEdge from "@/components/antv-g6/behavior/AntVG6CreateEdge";
-import SigmaCreateEdge from "@/components/sigma/behavior/SigmaCreateEdge";
+// import SigmaCreateEdge from "@/components/sigma/behavior/SigmaCreateEdge";
 import { CreateEdgeTable } from "@/components/Tables/features-table/CreateEdgeTable";
 
 export default function Page() {
@@ -13,7 +22,7 @@ export default function Page() {
     let sigmaCleanup: (() => void) | undefined;
 
     if (activeTab === "sigma") {
-      sigmaCleanup = SigmaCreateEdge();
+      <SigmaCreateEdge />;
     }
 
     return () => {

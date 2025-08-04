@@ -1,9 +1,18 @@
 "use client";
 
+import dynamic from "next/dynamic";
+
+const SigmaClickSelect = dynamic(
+  () => import("@/components/sigma/behavior/SigmaClickSelect"),
+  {
+    ssr: false,
+  },
+);
+
 import React, { useEffect, useState } from "react";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import AntVG6ClickSelect from "@/components/antv-g6/behavior/AntVG6ClickSelect";
-import SigmaClickSelect from "@/components/sigma/behavior/SigmaClickSelect";
+// import SigmaClickSelect from "@/components/sigma/behavior/SigmaClickSelect";
 import { ClickSelectTable } from "@/components/Tables/features-table/ClickSelectTable";
 
 export default function Page() {
@@ -13,7 +22,7 @@ export default function Page() {
     let sigmaCleanup: (() => void) | undefined;
 
     if (activeTab === "sigma") {
-      sigmaCleanup = SigmaClickSelect();
+      <SigmaClickSelect />;
     }
 
     return () => {

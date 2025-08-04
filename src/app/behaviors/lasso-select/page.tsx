@@ -1,9 +1,18 @@
 "use client";
 
+import dynamic from "next/dynamic";
+
+const SigmaLassoSelect = dynamic(
+  () => import("@/components/sigma/behavior/SigmaLassoSelect"),
+  {
+    ssr: false,
+  },
+);
+
 import React, { useEffect, useState } from "react";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import AntVG6LassoSelect from "@/components/antv-g6/behavior/AntVG6LassoSelect";
-import SigmaLassoSelect from "@/components/sigma/behavior/SigmaLassoSelect";
+// import SigmaLassoSelect from "@/components/sigma/behavior/SigmaLassoSelect";
 import { LassoSelectTable } from "@/components/Tables/features-table/LassoSelectTable";
 
 export default function Page() {
@@ -13,7 +22,7 @@ export default function Page() {
     let sigmaCleanup: (() => void) | undefined;
 
     if (activeTab === "sigma") {
-      sigmaCleanup = SigmaLassoSelect();
+      <SigmaLassoSelect />;
     }
 
     return () => {

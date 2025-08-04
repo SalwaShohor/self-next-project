@@ -1,8 +1,17 @@
 "use client";
 
+import dynamic from "next/dynamic";
+
+const ArrowHeads = dynamic(
+  () => import("@/components/sigma/edge-curve/arrow-heads/ArrowHeads"),
+  {
+    ssr: false,
+  },
+);
+
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import React, { useState } from "react";
-import ArrowHeads from "@/components/sigma/edge-curve/arrow-heads/ArrowHeads";
+// import ArrowHeads from "@/components/sigma/edge-curve/arrow-heads/ArrowHeads";
 
 export default function Page() {
   return (

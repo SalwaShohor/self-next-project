@@ -1,9 +1,18 @@
 "use client";
 
+import dynamic from "next/dynamic";
+
+const SigmaCollapseExpand = dynamic(
+  () => import("@/components/sigma/behavior/SigmaCollapseExpand"),
+  {
+    ssr: false,
+  },
+);
+
 import React, { useEffect, useState } from "react";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import AntVG6CollapseExpand from "@/components/antv-g6/behavior/AntVG6CollapseExpand";
-import SigmaCollapseExpand from "@/components/sigma/behavior/SigmaCollapseExpand";
+// import SigmaCollapseExpand from "@/components/sigma/behavior/SigmaCollapseExpand";
 import { CollapseExpandTable } from "@/components/Tables/features-table/CollapseExpandTable";
 
 export default function Page() {
@@ -13,7 +22,7 @@ export default function Page() {
     let sigmaCleanup: (() => void) | undefined;
 
     if (activeTab === "sigma") {
-      sigmaCleanup = SigmaCollapseExpand();
+      <SigmaCollapseExpand />;
     }
 
     return () => {

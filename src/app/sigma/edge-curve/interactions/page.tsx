@@ -1,4 +1,14 @@
 "use client";
+
+import dynamic from "next/dynamic";
+
+const Interactions = dynamic(
+  () => import("@/components/sigma/edge-curve/interactions/Interactions"),
+  {
+    ssr: false,
+  },
+);
+
 import { Alert } from "@/components/ui-elements/alert";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 // import type { Metadata } from "next";
@@ -9,17 +19,12 @@ import G6Graph from "@/components/nfis-analyze/large-node/G6Graph";
 import GraphWebGL from "@/components/nfis-analyze/large-node/GraphWebGL";
 import GraphSVG from "@/components/nfis-analyze/large-node/GraphSVG";
 import LargeDataGraph from "@/components/nfis-analyze/testing-javascript/LargeDataGraph";
-import Interactions from "@/components/sigma/edge-curve/interactions/Interactions";
+// import Interactions from "@/components/sigma/edge-curve/interactions/Interactions";
 import RenderWebGL from "@/components/nfis-analyze/test-render/RenderWebGL";
 import RenderCanvas from "@/components/nfis-analyze/test-render/RenderCanvas";
 import RenderSVG from "@/components/nfis-analyze/test-render/RenderSVG";
 // import AssetsNode from "@/components/nfis-analyze/assets-node/AssetsNode";
 import CompanyHistory from "@/components/nfis-analyze/company-history/CompanyHistory";
-
-// export const metadata: Metadata = {
-//   title: "Alerts",
-//   // other metadata
-// };
 
 export default function Page() {
   return (

@@ -1,9 +1,18 @@
 "use client";
 
+import dynamic from "next/dynamic";
+
+const SigmaHoverActivate = dynamic(
+  () => import("@/components/sigma/behavior/SigmaHoverActivate"),
+  {
+    ssr: false,
+  },
+);
+
 import React, { useEffect, useState } from "react";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import AntVG6HoverActivate from "@/components/antv-g6/behavior/AntVG6HoverActivate";
-import SigmaHoverActivate from "@/components/sigma/behavior/SigmaHoverActivate";
+// import SigmaHoverActivate from "@/components/sigma/behavior/SigmaHoverActivate";
 import { HoverActivateTable } from "@/components/Tables/features-table/HoverActivateTable";
 
 export default function Page() {
@@ -13,7 +22,7 @@ export default function Page() {
     let sigmaCleanup: (() => void) | undefined;
 
     if (activeTab === "sigma") {
-      sigmaCleanup = SigmaHoverActivate();
+      <SigmaHoverActivate />;
     }
 
     return () => {

@@ -1,8 +1,17 @@
 "use client";
 
+import dynamic from "next/dynamic";
+
+const Labels = dynamic(
+  () => import("@/components/sigma/edge-curve/labels/Labels"),
+  {
+    ssr: false,
+  },
+);
+
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import React, { useState } from "react";
-import Labels from "@/components/sigma/edge-curve/labels/Labels";
+// import Labels from "@/components/sigma/edge-curve/labels/Labels";
 
 export default function Page() {
   return (

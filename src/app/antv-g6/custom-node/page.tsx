@@ -616,11 +616,13 @@ export default function Page() {
 
   useEffect(() => {
     let isMounted = true;
+    // Capture containerRef.current in a variable for use in cleanup
+    const currentContainer = containerRef.current;
 
     const loadGraph = async () => {
       if (
         !isG6Loaded ||
-        !containerRef.current ||
+        !currentContainer || // Use the captured variable
         typeof window.G6 === "undefined"
       ) {
         return;
@@ -694,9 +696,9 @@ export default function Page() {
 
       const newGraph = new Graph({
         // Use a temporary variable for initialization
-        container: containerRef.current,
-        width: containerRef.current.offsetWidth,
-        height: containerRef.current.offsetHeight,
+        container: currentContainer, // Use the captured variable
+        width: currentContainer.offsetWidth, // Use the captured variable
+        height: currentContainer.offsetHeight, // Use the captured variable
         fitView: true,
         fitViewPadding: 20,
         behaviors: ["drag-canvas", "zoom-canvas", "drag-node"],
@@ -893,11 +895,11 @@ export default function Page() {
       });
 
       const handleResize = () => {
-        if (graphRef.current && containerRef.current) {
-          // Use graphRef.current and containerRef.current
+        if (graphRef.current && currentContainer) {
+          // Use captured variable
           graphRef.current.changeSize(
-            containerRef.current.offsetWidth,
-            containerRef.current.offsetHeight,
+            currentContainer.offsetWidth,
+            currentContainer.offsetHeight,
           );
         }
       };
@@ -919,8 +921,9 @@ export default function Page() {
         graphRef.current.destroy();
         graphRef.current = null;
       }
-      if (containerRef.current) {
-        containerRef.current.innerHTML = "";
+      // Use the captured variable for cleanup
+      if (currentContainer) {
+        currentContainer.innerHTML = "";
       }
     };
   }, [isG6Loaded]);
@@ -1284,8 +1287,10 @@ export default function Page() {
                             <span className="font-semibold">
                               Most repeated word:
                             </span>{" "}
-                            "package", "drop", "the guy", "green", "midnight",
-                            "usual place", "done", "watch out"
+                            &quot;package&quot;, &quot;drop&quot;, &quot;the
+                            guy&quot;, &quot;green&quot;, &quot;midnight&quot;,
+                            &quot;usual place&quot;, &quot;done&quot;,
+                            &quot;watch out&quot;
                           </p>
                         </div>
                       )}

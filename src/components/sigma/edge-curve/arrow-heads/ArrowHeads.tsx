@@ -1,4 +1,4 @@
-"use client"; // Required in Next.js App Router
+"use client";
 
 import { useEffect } from "react";
 import { MultiGraph } from "graphology";
@@ -13,7 +13,7 @@ import {
   EdgeRectangleProgram,
 } from "sigma/rendering";
 
-export default function ParallelEdges() {
+export default function ArrowHeads() {
   useEffect(() => {
     const container = document.getElementById("sigma-container");
     if (!container) return;

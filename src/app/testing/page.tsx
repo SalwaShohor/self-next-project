@@ -1,4 +1,14 @@
 "use client";
+
+import dynamic from "next/dynamic";
+
+const TestingSigma = dynamic(
+  () => import("@/components/sigma/edge-curve/basic-example/TestingSigma"),
+  {
+    ssr: false,
+  },
+);
+
 import { Alert } from "@/components/ui-elements/alert";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 // import type { Metadata } from "next";
@@ -9,7 +19,7 @@ import G6Graph from "@/components/nfis-analyze/large-node/G6Graph";
 import GraphWebGL from "@/components/nfis-analyze/large-node/GraphWebGL";
 import GraphSVG from "@/components/nfis-analyze/large-node/GraphSVG";
 import LargeDataGraph from "@/components/nfis-analyze/testing-javascript/LargeDataGraph";
-import TestingSigma from "@/components/nfis-analyze/testing-javascript/TestingSigma";
+// import TestingSigma from "@/components/nfis-analyze/testing-javascript/TestingSigma";
 import RenderWebGL from "@/components/nfis-analyze/test-render/RenderWebGL";
 import RenderCanvas from "@/components/nfis-analyze/test-render/RenderCanvas";
 import RenderSVG from "@/components/nfis-analyze/test-render/RenderSVG";

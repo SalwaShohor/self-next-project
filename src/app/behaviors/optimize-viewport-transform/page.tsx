@@ -1,9 +1,18 @@
 "use client";
 
+import dynamic from "next/dynamic";
+
+const SigmaOptimizeViewportTransform = dynamic(
+  () => import("@/components/sigma/behavior/SigmaOptimizeViewportTransform"),
+  {
+    ssr: false,
+  },
+);
+
 import React, { useEffect, useState } from "react";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import AntVG6OptimizeViewportTransform from "@/components/antv-g6/behavior/AntVG6OptimizeViewportTransform";
-import SigmaOptimizeViewportTransform from "@/components/sigma/behavior/SigmaOptimizeViewportTransform";
+// import SigmaOptimizeViewportTransform from "@/components/sigma/behavior/SigmaOptimizeViewportTransform";
 import { OptimizeViewportTransformTable } from "@/components/Tables/features-table/OptimizeViewportTransformTable";
 
 export default function Page() {
@@ -13,7 +22,7 @@ export default function Page() {
     let sigmaCleanup: (() => void) | undefined;
 
     if (activeTab === "sigma") {
-      sigmaCleanup = SigmaOptimizeViewportTransform();
+      <SigmaOptimizeViewportTransform />;
     }
 
     return () => {
