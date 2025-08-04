@@ -45,15 +45,7 @@ export default function Page() {
       return (
         <div className="rounded-b-lg bg-white p-6 shadow-md">
           <div className="h-[500px] w-full pt-7">
-            <div
-              id="sigma-container"
-              style={{
-                width: "100%",
-                height: "100%",
-                // border: "1px solid #ccc",
-                borderRadius: "8px",
-              }}
-            />
+            <SigmaClickSelect />;
           </div>
         </div>
       );
