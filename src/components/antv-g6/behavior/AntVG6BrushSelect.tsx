@@ -48,7 +48,7 @@ export default function AntVG6BrushSelect() {
         ],
         layout: {
           type: "force",
-          animated: true,
+          // animated: true,
           linkDistance: 100,
           preventOverlap: true,
         },

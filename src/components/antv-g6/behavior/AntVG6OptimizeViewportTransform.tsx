@@ -41,9 +41,9 @@ export default function AntVG6SOptimizeViewportTransform() {
       const graph = new Graph({
         container: "container",
         behaviors: [
-          //   "drag-canvas",
-          //   "scroll-canvas",
-          //   "drag-element",
+          "drag-canvas",
+          "zoom-canvas",
+          "scroll-canvas",
           "optimize-viewport-transform",
         ],
         layout: {

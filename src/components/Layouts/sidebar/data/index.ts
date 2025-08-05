@@ -203,6 +203,10 @@ export const NAV_DATA = [
             url: "/behaviors/drag-element",
           },
           {
+            title: "Drag Element Force",
+            url: "/behaviors/drag-element-force",
+          },
+          {
             title: "Focus Element",
             url: "/behaviors/focus-element",
           },

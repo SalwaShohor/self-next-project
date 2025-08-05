@@ -3,89 +3,88 @@
 import { useEffect, useRef } from "react";
 import { Graph } from "@antv/g6";
 
-const fetchData = async (type: "small" | "large") => {
-  if (type === "large") {
-    const res = await fetch("data/cluster.json");
-    return res.json();
-  }
-  return {
-    nodes: [
-      { id: "b0" },
-      { id: "b1" },
-      { id: "b2" },
-      { id: "b3" },
-      { id: "b4" },
-      { id: "b5" },
-    ],
-    edges: [
-      { source: "b0", target: "b1" },
-      { source: "b0", target: "b2" },
-      { source: "b0", target: "b3" },
-      { source: "b0", target: "b4" },
-      { source: "b0", target: "b5" },
-    ],
-  };
+const graphData = {
+  nodes: [
+    { id: "b0", style: { x: 400, y: 100, labelText: "Node 1" } },
+    { id: "b1", style: { x: 200, y: 50, labelText: "Node 2" } },
+    { id: "b2", style: { x: 600, y: 0, labelText: "Node 3" } },
+    { id: "b3", style: { x: 100, y: 100, labelText: "Node 4" } },
+    { id: "b4", style: { x: 600, y: 500, labelText: "Node 5" } },
+    { id: "b5", style: { x: 700, y: 600, labelText: "Node 6" } },
+  ],
+  edges: [
+    { source: "b0", target: "b1" },
+    { source: "b0", target: "b2" },
+    { source: "b0", target: "b3" },
+    { source: "b0", target: "b4" },
+    { source: "b0", target: "b5" },
+  ],
 };
 
-export default function AntVG6AutoAdaptLabel() {
+const AntVG6AutoAdaptLabel: React.FC = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
   const graphRef = useRef<Graph | null>(null);
 
   useEffect(() => {
-    let isMounted = true;
+    const container = containerRef.current;
 
-    const loadGraph = async () => {
-      const data = await fetchData("small");
+    if (!container || graphRef.current) return;
 
-      if (!isMounted) return;
-
-      const graph = new Graph({
-        container: "container",
-        behaviors: [
-          {
-            type: "auto-adapt-label",
-            throttle: 200, // Throttle time
-            padding: 10, // Extra spacing when detecting overlap
-          },
-        ],
-        layout: {
-          type: "force",
-          // animated: true,
-          linkDistance: 100,
-          preventOverlap: true,
+    const graph = new Graph({
+      container,
+      width: container.clientWidth,
+      height: container.clientHeight,
+      node: {
+        style: {
+          labelText: (d: any) => d.style.labelText,
+          labelFill: "#000",
+          labelFontSize: 16,
+          maxWidth: 120,
+          padding: 10,
+          fill: "#e6f7ff",
+          stroke: "#1890ff",
         },
-        data,
-      });
+      },
+      edge: {
+        style: {
+          stroke: "#999",
+        },
+      },
+      behaviors: [
+        "zoom-canvas",
+        "drag-canvas",
+        {
+          key: "auto-adapt-label",
+          type: "auto-adapt-label",
+          padding: 0,
+          throttle: 200,
+        } as any,
+      ],
+      plugins: [
+        {
+          type: "grid-line",
+          size: 30,
+        } as any,
+      ],
+      // animation: true,
+      autoFit: "center",
+    });
 
-      graph.render();
-      graphRef.current = graph;
+    // ✅ Set graph data before rendering
+    graph.setData(graphData);
 
-      if (typeof (window as any).addPanel === "function") {
-        (window as any).addPanel((gui: any) => {
-          gui
-            .add({ type: "small" }, "type", ["small", "large"])
-            .onChange(async (type: "small" | "large") => {
-              const newData = await fetchData(type);
-              graph.setData(newData);
-              graph.render();
-            });
-        });
-      }
-    };
+    // ✅ Now render the graph
+    graph.render();
 
-    loadGraph();
+    graphRef.current = graph;
 
     return () => {
-      isMounted = false;
-      if (graphRef.current) {
-        graphRef.current.destroy();
-        graphRef.current = null;
-      }
-
-      // Clear container manually to prevent multiple canvases
-      const container = document.getElementById("container");
-      if (container) container.innerHTML = "";
+      graph.destroy();
+      graphRef.current = null;
     };
   }, []);
 
-  return <div id="container" style={{ width: "100%", height: "600px" }} />;
-}
+  return <div ref={containerRef} style={{ width: "100%", height: "600px" }} />;
+};
+
+export default AntVG6AutoAdaptLabel;

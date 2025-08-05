@@ -56,7 +56,7 @@ export default function Page() {
 
   return (
     <>
-      <Breadcrumb pageName="Behavior: Zoom Canvas" />
+      <Breadcrumb pageName="Behavior: Optimize Viewport Transform" />
 
       <div className="space-y-7.5 rounded-[10px] bg-white p-4 shadow-1 dark:bg-gray-dark dark:shadow-card md:p-6 xl:p-9">
         <div className="flex w-full items-center justify-center p-4 font-sans sm:p-6">

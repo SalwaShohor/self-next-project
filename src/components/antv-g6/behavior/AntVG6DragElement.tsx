@@ -49,6 +49,7 @@ export default function AntVG6DragElement() {
             shadow: true, // Enable ghost node
           },
         ],
+        cursor: "grab",
         layout: {
           type: "force",
           animated: true,

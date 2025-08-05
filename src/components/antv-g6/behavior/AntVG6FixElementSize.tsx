@@ -3,90 +3,111 @@
 import { useEffect, useRef } from "react";
 import { Graph } from "@antv/g6";
 
-const fetchData = async (type: "small" | "large") => {
-  if (type === "large") {
-    const res = await fetch("data/cluster.json");
-    return res.json();
-  }
-  return {
-    nodes: [
-      { id: "b0" },
-      { id: "b1" },
-      { id: "b2" },
-      { id: "b3" },
-      { id: "b4" },
-      { id: "b5" },
-    ],
-    edges: [
-      { source: "b0", target: "b1" },
-      { source: "b0", target: "b2" },
-      { source: "b0", target: "b3" },
-      { source: "b0", target: "b4" },
-      { source: "b0", target: "b5" },
-    ],
-  };
+const graphData = {
+  nodes: [
+    {
+      id: "node0",
+      size: 50,
+      label: "0",
+      style: { x: 326, y: 268 },
+      states: ["selected"],
+    },
+    {
+      id: "node1",
+      size: 30,
+      label: "1",
+      style: { x: 280, y: 384 },
+      states: ["selected"],
+    },
+    { id: "node2", size: 30, label: "2", style: { x: 234, y: 167 } },
+    { id: "node3", size: 30, label: "3", style: { x: 391, y: 368 } },
+    { id: "node4", size: 30, label: "4", style: { x: 444, y: 209 } },
+    { id: "node5", size: 30, label: "5", style: { x: 378, y: 157 } },
+    { id: "node6", size: 15, label: "6", style: { x: 229, y: 400 } },
+    { id: "node7", size: 15, label: "7", style: { x: 281, y: 440 } },
+    { id: "node8", size: 15, label: "8", style: { x: 188, y: 119 } },
+    { id: "node9", size: 15, label: "9", style: { x: 287, y: 157 } },
+    { id: "node10", size: 15, label: "10", style: { x: 185, y: 200 } },
+    { id: "node11", size: 15, label: "11", style: { x: 238, y: 110 } },
+    { id: "node12", size: 15, label: "12", style: { x: 239, y: 221 } },
+    { id: "node13", size: 15, label: "13", style: { x: 176, y: 160 } },
+    { id: "node14", size: 15, label: "14", style: { x: 389, y: 423 } },
+    { id: "node15", size: 15, label: "15", style: { x: 441, y: 341 } },
+    { id: "node16", size: 15, label: "16", style: { x: 442, y: 398 } },
+  ],
+  edges: [
+    { source: "node0", target: "node1", label: "0-1", states: ["selected"] },
+    { source: "node0", target: "node2", label: "0-2" },
+    { source: "node0", target: "node3", label: "0-3" },
+    { source: "node0", target: "node4", label: "0-4" },
+    { source: "node0", target: "node5", label: "0-5" },
+    { source: "node1", target: "node6", label: "1-6" },
+    { source: "node1", target: "node7", label: "1-7" },
+    { source: "node2", target: "node8", label: "2-8" },
+    { source: "node2", target: "node9", label: "2-9" },
+    { source: "node2", target: "node10", label: "2-10" },
+    { source: "node2", target: "node11", label: "2-11" },
+    { source: "node2", target: "node12", label: "2-12" },
+    { source: "node2", target: "node13", label: "2-13" },
+    { source: "node3", target: "node14", label: "3-14" },
+    { source: "node3", target: "node15", label: "3-15" },
+    { source: "node3", target: "node16", label: "3-16" },
+  ],
 };
 
-export default function AntVG6FixElementSize() {
+const AntVG6FixElementSize: React.FC = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
   const graphRef = useRef<Graph | null>(null);
 
   useEffect(() => {
-    let isMounted = true;
+    if (!containerRef.current || graphRef.current) return;
 
-    const loadGraph = async () => {
-      const data = await fetchData("small");
-
-      if (!isMounted) return;
-
-      const graph = new Graph({
-        container: "container",
-        behaviors: [
-          {
-            type: "fix-element-size",
-            enable: true, // Enable this interaction
-            state: "selected", // State of elements to fix size
-            reset: true, // Restore style when elements are redrawn
-          },
-        ],
-        layout: {
-          type: "force",
-          // animated: true,
-          linkDistance: 100,
-          preventOverlap: true,
+    const graph = new Graph({
+      container: containerRef.current,
+      data: graphData,
+      node: {
+        style: {
+          labelText: (d: any) => d.label,
+          size: (d: any) => d.size,
+          lineWidth: 1,
         },
-        data,
-      });
+      },
+      edge: {
+        style: {
+          labelText: (d: any) => d.label,
+        },
+      },
+      behaviors: [
+        "zoom-canvas",
+        "drag-canvas",
+        {
+          key: "fix-element-size",
+          type: "fix-element-size",
+          enable: (event: any) => event.data?.scale < 1,
+          state: "selected",
+          reset: true,
+        },
+        {
+          type: "click-select",
+          key: "click-select",
+          multiple: true,
+        },
+      ],
+      autoFit: "center",
+    });
 
-      graph.render();
-      graphRef.current = graph;
-
-      if (typeof (window as any).addPanel === "function") {
-        (window as any).addPanel((gui: any) => {
-          gui
-            .add({ type: "small" }, "type", ["small", "large"])
-            .onChange(async (type: "small" | "large") => {
-              const newData = await fetchData(type);
-              graph.setData(newData);
-              graph.render();
-            });
-        });
-      }
-    };
-
-    loadGraph();
+    graph.render();
+    graphRef.current = graph;
 
     return () => {
-      isMounted = false;
       if (graphRef.current) {
         graphRef.current.destroy();
         graphRef.current = null;
       }
-
-      // Clear container manually to prevent multiple canvases
-      const container = document.getElementById("container");
-      if (container) container.innerHTML = "";
     };
   }, []);
 
-  return <div id="container" style={{ width: "100%", height: "600px" }} />;
-}
+  return <div ref={containerRef} style={{ width: "100%", height: "600px" }} />;
+};
+
+export default AntVG6FixElementSize;

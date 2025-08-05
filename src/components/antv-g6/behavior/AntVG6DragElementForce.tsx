@@ -3,89 +3,72 @@
 import { useEffect, useRef } from "react";
 import { Graph } from "@antv/g6";
 
-const fetchData = async (type: "small" | "large") => {
-  if (type === "large") {
-    const res = await fetch("data/cluster.json");
-    return res.json();
-  }
-  return {
-    nodes: [
-      { id: "b0" },
-      { id: "b1" },
-      { id: "b2" },
-      { id: "b3" },
-      { id: "b4" },
-      { id: "b5" },
-    ],
-    edges: [
-      { source: "b0", target: "b1" },
-      { source: "b0", target: "b2" },
-      { source: "b0", target: "b3" },
-      { source: "b0", target: "b4" },
-      { source: "b0", target: "b5" },
-    ],
-  };
-};
-
-export default function AntVG6DragElementForce() {
-  const graphRef = useRef<Graph | null>(null);
+export default function DragElementForce() {
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    let isMounted = true;
+    if (!containerRef.current) return;
 
-    const loadGraph = async () => {
-      const data = await fetchData("small");
+    const data = {
+      nodes: new Array(10).fill(0).map((_, i) => ({
+        id: `${i}`,
+        label: `${i}`,
+      })),
+      edges: [
+        { source: "0", target: "1" },
+        { source: "0", target: "2" },
+        { source: "0", target: "3" },
+        { source: "0", target: "4" },
+        { source: "0", target: "5" },
+        { source: "0", target: "7" },
+        { source: "0", target: "8" },
+        { source: "0", target: "9" },
+        { source: "2", target: "3" },
+        { source: "4", target: "5" },
+        { source: "4", target: "6" },
+        { source: "5", target: "6" },
+      ],
+    };
 
-      if (!isMounted) return;
-
-      const graph = new Graph({
-        container: "container",
-        behaviors: [
-          {
-            type: "drag-element-force",
-            key: "drag-element-force-1",
-            fixed: true, // Fix node position after dragging
-          },
-        ],
-        layout: {
-          type: "force",
-          animated: true,
-          linkDistance: 100,
-          preventOverlap: true,
+    const graph = new Graph({
+      container: containerRef.current,
+      width: containerRef.current.clientWidth,
+      height: 600,
+      data,
+      node: {
+        style: {
+          labelText: (d: any) => d.label,
+          labelPlacement: "center",
+          labelFill: "#fff",
         },
-        data,
-      });
+      },
+      layout: {
+        type: "d3-force",
+        link: {
+          distance: 100,
+          strength: 2,
+        },
+        collide: {
+          radius: 40,
+        },
+      },
+      behaviors: [
+        {
+          type: "drag-element-force",
+          fixed: true,
+        },
+      ],
+    });
 
-      graph.render();
-      graphRef.current = graph;
+    graph.render();
 
-      if (typeof (window as any).addPanel === "function") {
-        (window as any).addPanel((gui: any) => {
-          gui
-            .add({ type: "small" }, "type", ["small", "large"])
-            .onChange(async (type: "small" | "large") => {
-              const newData = await fetchData(type);
-              graph.setData(newData);
-              graph.render();
-            });
-        });
-      }
-    };
-
-    loadGraph();
-
-    return () => {
-      isMounted = false;
-      if (graphRef.current) {
-        graphRef.current.destroy();
-        graphRef.current = null;
-      }
-
-      // Clear container manually to prevent multiple canvases
-      const container = document.getElementById("container");
-      if (container) container.innerHTML = "";
-    };
+    return () => graph.destroy();
   }, []);
 
-  return <div id="container" style={{ width: "100%", height: "600px" }} />;
+  return (
+    <div
+      ref={containerRef}
+      style={{ width: "100%", height: "600px", border: "1px solid #ccc" }}
+    />
+  );
 }
