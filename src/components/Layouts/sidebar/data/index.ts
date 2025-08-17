@@ -136,6 +136,12 @@ export const NAV_DATA = [
         icon: Icons.Calendar,
         items: [],
       },
+      {
+        title: "Custom Target",
+        url: "/antv-g6/custom-target",
+        icon: Icons.Calendar,
+        items: [],
+      },
 
       {
         title: "UI Elements",
@@ -158,6 +164,25 @@ export const NAV_DATA = [
           {
             title: "Sign In",
             url: "/auth/sign-in",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    label: "TARGET",
+    items: [
+      {
+        title: "Target",
+        icon: Icons.PieChart,
+        items: [
+          {
+            title: "Add New Target",
+            url: "/target/testing",
+          },
+          {
+            title: "Target List",
+            url: "/target/target-list",
           },
         ],
       },

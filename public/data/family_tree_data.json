@@ -1,0 +1,744 @@
+{
+  "nodes": [
+    {
+      "id": "father",
+      "label": "Father (Aiman)",
+      "fullName": "Aiman Haris",
+      "icNumber": "600808068847",
+      "currentAddress": "23, Lorong Cempaka, 49664 Petaling Jaya",
+      "phoneNumber": "0119646576",
+      "birthDate": "08/08/1965",
+      "img": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzk1YTVhNiI+CiAgPHBhdGggZD0iTTEyIDEyYzIuMjEgMCA0LTEuNzkgNC00cy0xLjc5LTQtNC00LTQtMS43OS00IDQtMS43OS00IDQtNCA0em0wIDJjLTIuNjcgMC04IDEuMzQtOCA0djJoMTZ2LTJjMC0yLjY2LTUuMzMtNC04LTR6Ii8+CiAgPC9zdmc+",
+      "style": {
+        "fill": "#4CAF50",
+        "stroke": "#388E3C",
+        "lineWidth": 2
+      },
+      "comboId": "parents-combo",
+      "gender": "male"
+    },
+    {
+      "id": "mother",
+      "label": "Mother (Fatihah)",
+      "fullName": "Fatihah Zahra binti Zulkifli",
+      "icNumber": "680718067890",
+      "currentAddress": "23, Lorong Cempaka, 49664 Petaling Jaya",
+      "phoneNumber": "0123456789",
+      "birthDate": "18/07/1970",
+      "img": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzk1YTVhNiI+CiAgPHBhdGggZD0iTTEyIDEyYzIuMjEgMCA0LTEuNzkgNC00cy0xL7k5LTQtNC00LTQtMS43OS00IDQtMS43OS00IDQtNCA0em0wIDJjLTIuNjcgMC04IDEuMzQtOC00djJoMTZ2LTJjMC0yLjY2LTUuMzMtNC04LTR6Ii8+CiAgPC9zdmc+",
+      "style": {
+        "fill": "#FFC107",
+        "stroke": "#FFA000",
+        "lineWidth": 2
+      },
+      "comboId": "parents-combo",
+      "gender": "female"
+    },
+    {
+      "id": "offspring-1",
+      "label": "Ahmad Faiz",
+      "fullName": "Ahmad Faiz",
+      "icNumber": "900101061234",
+      "currentAddress": "67, Jalan Anggerik, 12345 Penang",
+      "phoneNumber": "0123456789",
+      "birthDate": "01/01/1990",
+      "img": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzk1YTVhNiI+CiAgPHBhdGggZD0iTTEyIDEyYzIuMjEgMCA0LTEuNzkgNC00cy0xLjc5LTQtNC00LTQtMS43OS00IDQtMS43OS00IDQtNCA0em0wIDJjLTIuNjcgMC04IDEuMzQtOC00djJoMTZ2LTJjMC0yLjY2LTUuMzMtNC04LTR6Ii8+CiAgPC9zdmc+",
+      "style": {
+        "fill": "#FF6347",
+        "stroke": "#5B8FF9",
+        "lineWidth": 2
+      },
+      "siblingSequence": "1",
+      "comboId": "combo-offspring-1",
+      "gender": "male"
+    },
+    {
+      "id": "offspring-1-spouse",
+      "label": "Amira Batrisyia",
+      "fullName": "Amira Batrisyia",
+      "icNumber": "920315065678",
+      "currentAddress": "67, Jalan Anggerik, 12345 Penang",
+      "phoneNumber": "0178765432",
+      "birthDate": "15/03/1992",
+      "img": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzk1YTVhNiI+CiAgPHBhdGggZD0iTTEyIDEyYzIuMjEgMCA0LTEuNzkgNC00cy0xLjc5LTQtNC00LTQtMS43OS00IDQtMS43OS00IDQtNCA0em0wIDJjLTIuNjcgMC04IDEuMzQtOC00djJoMTZ2LTJjMC0yLjY2LTUuMzMtNC04LTR6Ii8+CiAgPC9zdmc+",
+      "style": {
+        "fill": "#4682B4",
+        "stroke": "#5B8FF9",
+        "lineWidth": 2
+      },
+      "comboId": "combo-offspring-1",
+      "gender": "female"
+    },
+    {
+      "id": "offspring-2",
+      "label": "Muhammad Iqbal",
+      "fullName": "Muhammad Iqbal",
+      "icNumber": "910520069876",
+      "currentAddress": "89, Taman Permai, 67890 Kuala Lumpur",
+      "phoneNumber": "0132109876",
+      "birthDate": "20/05/1991",
+      "img": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzk1YTVhNiI+CiAgPHBhdGggZD0iTTEyIDEyYzIuMjEgMCA0LTEuNzkgNC00cy0xLjc5LTQtNC00LTQtMS43OS00IDQtMS43OS00IDQtNCA0em0wIDJjLTIuNjcgMC04IDEuMzQtOC00djJoMTZ2LTJjMC0yLjY2LTUuMzMtNC04LTR6Ii8+CiAgPC9zdmc+",
+      "style": {
+        "fill": "#32CD32",
+        "stroke": "#5B8FF9",
+        "lineWidth": 2
+      },
+      "siblingSequence": "2",
+      "comboId": "combo-offspring-2",
+      "gender": "male"
+    },
+    {
+      "id": "offspring-2-spouse",
+      "label": "Nurul Syafiqah",
+      "fullName": "Nurul Syafiqah",
+      "icNumber": "930725064321",
+      "currentAddress": "89, Taman Permai, 67890 Kuala Lumpur",
+      "phoneNumber": "0191234567",
+      "birthDate": "25/07/1993",
+      "img": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzk1YTVhNiI+CiAgPHBhdGggZD0iTTEyIDEyYzIuMjEgMCA0LTEuNzkgNC00cy0xLjc5LTQtNC00LTQtMS43OS00IDQtMS43OS00IDQtNCA0em0wIDJjLTIuNjcgMC04IDEuMzQtOC00djJoMTZ2LTJjMC0yLjY2LTUuMzMtNC04LTR6Ii8+CiAgPC9zdmc+",
+      "style": {
+        "fill": "#FFD700",
+        "stroke": "#5B8FF9",
+        "lineWidth": 2
+      },
+      "comboId": "combo-offspring-2",
+      "gender": "female"
+    },
+    {
+      "id": "offspring-3",
+      "label": "Hafizuddin",
+      "fullName": "Hafizuddin",
+      "icNumber": "950910061122",
+      "currentAddress": "12, Jalan Bahagia, 34567 Johor Bahru",
+      "phoneNumber": "0145678901",
+      "birthDate": "10/09/1995",
+      "img": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzk1YTVhNiI+CiAgPHBhdGggZD0iTTEyIDEyYzIuMjEgMCA0LTEuNzkgNC00cy0xLjc5LTQtNC00LTQtMS43OS00IDQtMS43OS00IDQtNCA0em0wIDJjLTIuNjcgMC04IDEuMzQtOC00djJoMTZ2LTJjMC0yLjY2LTUuMzMtNC04LTR6Ii8+CiAgPC9zdmc+",
+      "style": {
+        "fill": "#8A2BE2",
+        "stroke": "#5B8FF9",
+        "lineWidth": 2
+      },
+      "siblingSequence": "3",
+      "comboId": "combo-offspring-3",
+      "gender": "male"
+    },
+    {
+      "id": "offspring-3-spouse",
+      "label": "Hana Qistina",
+      "fullName": "Hana Qistina",
+      "icNumber": "961122063344",
+      "currentAddress": "12, Jalan Bahagia, 34567 Johor Bahru",
+      "phoneNumber": "0169876543",
+      "birthDate": "22/11/1996",
+      "img": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzk1YTVhNiI+CiAgPHBhdGggZD0iTTEyIDEyYzIuMjEgMCA0LTEuNzkgNC00cy0xLjc5LTQtNC00LTQtMS43OS00IDQtMS43OS00IDQtNCA0em0wIDJjLTIuNjcgMC04IDEuMzQtOC00djJoMTZ2LTJjMC0yLjY2LTUuMzMtNC04LTR6Ii8+CiAgPC9zdmc+",
+      "style": {
+        "fill": "#FF69B4",
+        "stroke": "#5B8FF9",
+        "lineWidth": 2
+      },
+      "comboId": "combo-offspring-3",
+      "gender": "female"
+    },
+    {
+      "id": "offspring-4",
+      "label": "Nur Aisyah",
+      "fullName": "Nur Aisyah",
+      "icNumber": "970205065566",
+      "currentAddress": "45, Lorong Cempaka, 23456 Ipoh",
+      "phoneNumber": "0176543210",
+      "birthDate": "05/02/1997",
+      "img": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzk1YTVhNiI+CiAgPHBhdGggZD0iTTEyIDEyYzIuMjEgMCA0LTEuNzkgNC00cy0xLjc5LTQtNC00LTQtMS43OS00IDQtMS43OS00IDQtNCA0em0wIDJjLTIuNjcgMC04IDEuMzQtOC00djJoMTZ2LTJjMC0yLjY2LTUuMzMtNC04LTR6Ii8+CiAgPC9zdmc+",
+      "style": {
+        "fill": "#00CED1",
+        "stroke": "#5B8FF9",
+        "lineWidth": 2
+      },
+      "siblingSequence": "4",
+      "comboId": "combo-offspring-4",
+      "gender": "female"
+    },
+    {
+      "id": "offspring-4-spouse",
+      "label": "Syahmi Hakim",
+      "fullName": "Syahmi Hakim",
+      "icNumber": "980410067788",
+      "currentAddress": "45, Lorong Cempaka, 23456 Ipoh",
+      "phoneNumber": "0189012345",
+      "birthDate": "10/04/1998",
+      "img": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzk1YTVhNiI+CiAgPHBhdGggZD0iTTEyIDEyYzIuMjEgMCA0LTEuNzkgNC00cy0xLjc5LTQtNC00LTQtMS43OS00IDQtMS43OS00IDQtNCA0em0wIDJjLTIuNjcgMC04IDEuMzQtOC00djJoMTZ2LTJjMC0yLjY2LTUuMzMtNC04LTR6Ii8+CiAgPC9zdmc+",
+      "style": {
+        "fill": "#FF4500",
+        "stroke": "#5B8FF9",
+        "lineWidth": 2
+      },
+      "comboId": "combo-offspring-4",
+      "gender": "male"
+    },
+    {
+      "id": "offspring-5",
+      "label": "Siti Hajar",
+      "fullName": "Siti Hajar",
+      "icNumber": "990615069900",
+      "currentAddress": "78, Persiaran Indah, 98765 Petaling Jaya",
+      "phoneNumber": "0102345678",
+      "birthDate": "15/06/1999",
+      "img": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzk1YTVhNiI+CiAgPHBhdGggZD0iTTEyIDEyYzIuMjEgMCA0LTEuNzkgNC00cy0xLjc5LTQtNC00LTQtMS43OS00IDQtMS43OS00IDQtNCA0em0wIDJjLTIuNjcgMC04IDEuMzQtOC00djJoMTZ2LTJjMC0yLjY2LTUuMzMtNC04LTR6Ii8+CiAgPC9zdmc+",
+      "style": {
+        "fill": "#FF6347",
+        "stroke": "#5B8FF9",
+        "lineWidth": 2
+      },
+      "siblingSequence": "5",
+      "comboId": "combo-offspring-5",
+      "gender": "female"
+    },
+    {
+      "id": "offspring-5-spouse",
+      "label": "Farhan Naufal",
+      "fullName": "Farhan Naufal",
+      "icNumber": "000820061122",
+      "currentAddress": "78, Persiaran Indah, 98765 Petaling Jaya",
+      "phoneNumber": "0113456789",
+      "birthDate": "20/08/2000",
+      "img": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzk1YTVhNiI+CiAgPHBhdGggZD0iTTEyIDEyYzIuMjEgMCA0LTEuNzkgNC00cy0xLjc5LTQtNC00LTQtMS43OS00IDQtMS43OS00IDQtNCA0em0wIDJjLTIuNjcgMC04IDEuMzQtOC00djJoMTZ2LTJjMC0yLjY2LTUuMzMtNC04LTR6Ii8+CiAgPC9zdmc+",
+      "style": {
+        "fill": "#4682B4",
+        "stroke": "#5B8FF9",
+        "lineWidth": 2
+      },
+      "comboId": "combo-offspring-5",
+      "gender": "male"
+    },
+    {
+      "id": "offspring-6",
+      "label": "Balqis Imani",
+      "fullName": "Balqis Imani",
+      "icNumber": "011025063344",
+      "currentAddress": "90, Jalan Anggerik, 12345 Kuala Lumpur",
+      "phoneNumber": "0125678901",
+      "birthDate": "25/10/2001",
+      "img": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzk1YTVhNiI+CiAgPHBhdGggZD0iTTEyIDEyYzIuMjEgMCA0LTEuNzkgNC00cy0xLjc5LTQtNC00LTQtMS43OS00IDQtMS43OS00IDQtNCA0em0wIDJjLTIuNjcgMC04IDEuMzQtOC00djJoMTZ2LTJjMC0yLjY2LTUuMzMtNC04LTR6Ii8+CiAgPC9zdmc+",
+      "style": {
+        "fill": "#32CD32",
+        "stroke": "#5B8FF9",
+        "lineWidth": 2
+      },
+      "siblingSequence": "6",
+      "comboId": "combo-offspring-6",
+      "gender": "female"
+    },
+    {
+      "id": "offspring-6-spouse",
+      "label": "Irfan Danish",
+      "fullName": "Irfan Danish",
+      "icNumber": "021230065566",
+      "currentAddress": "90, Jalan Anggerik, 12345 Kuala Lumpur",
+      "phoneNumber": "0137890123",
+      "birthDate": "30/12/2002",
+      "img": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzk1YTVhNiI+CiAgPHBhdGggZD0iTTEyIDEyYzIuMjEgMCA0LTEuNzkgNC00cy0xLjc5LTQtNC00LTQtMS43OS00IDQtMS43OS00IDQtNCA0em0wIDJjLTIuNjcgMC04IDEuMzQtOC00djJoMTZ2LTJjMC0yLjY2LTUuMzMtNC04LTR6Ii8+CiAgPC9zdmc+",
+      "style": {
+        "fill": "#FFD700",
+        "stroke": "#5B8FF9",
+        "lineWidth": 2
+      },
+      "comboId": "combo-offspring-6",
+      "gender": "male"
+    },
+    {
+      "id": "offspring-7",
+      "label": "Aina Sofea",
+      "fullName": "Aina Sofea",
+      "icNumber": "030101067788",
+      "currentAddress": "11, Taman Permai, 45678 Johor Bahru",
+      "phoneNumber": "0149012345",
+      "birthDate": "01/01/2003",
+      "img": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzk1YTVhNiI+CiAgPHBhdGggZD0iTTEyIDEyYzIuMjEgMCA0LTEuNzkgNC00cy0xLjc5LTQtNC00LTQtMS43OS00IDQtMS43OS00IDQtNCA0em0wIDJjLTIuNjcgMC04IDEuMzQtOC00djJoMTZ2LTJjMC0yLjY2LTUuMzMtNC04LTR6Ii8+CiAgPC9zdmc+",
+      "style": {
+        "fill": "#8A2BE2",
+        "stroke": "#5B8FF9",
+        "lineWidth": 2
+      },
+      "siblingSequence": "7",
+      "comboId": "combo-offspring-7",
+      "gender": "female"
+    },
+    {
+      "id": "offspring-7-spouse",
+      "label": "Luqman Hakimi",
+      "fullName": "Luqman Hakimi",
+      "icNumber": "040305069900",
+      "currentAddress": "11, Taman Permai, 45678 Johor Bahru",
+      "phoneNumber": "0161234567",
+      "birthDate": "05/03/2004",
+      "img": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzk1YTVhNiI+CiAgPHBhdGggZD0iTTEyIDEyYzIuMjEgMCA0LTEuNzkgNC00cy0xLjc5LTQtNC00LTQtMS43OS00IDQtMS43OS00IDQtNCA0em0wIDJjLTIuNjcgMC04IDEuMzQtOC00djJoMTZ2LTJjMC0yLjY2LTUuMzMtNC04LTR6Ii8+CiAgPC9sZ2c+",
+      "style": {
+        "fill": "#FF69B4",
+        "stroke": "#5B8FF9",
+        "lineWidth": 2
+      },
+      "comboId": "combo-offspring-7",
+      "gender": "male"
+    },
+    {
+      "id": "hafizuddin-asset-house",
+      "label": "House",
+      "assetType": "Real Estate",
+      "value": "MYR 5,000,000.00",
+      "address": "123, Jalan Bukit Bintang, 55100 Kuala Lumpur",
+      "comboId": "hafizuddin-assets-combo",
+      "style": {
+        "fill": "#F8D7DA",
+        "stroke": "#DC3545",
+        "lineWidth": 1
+      }
+    },
+    {
+      "id": "hafizuddin-asset-stocks",
+      "label": "Stocks Portfolio",
+      "assetType": "Investments",
+      "value": "MYR 2,000,000.00",
+      "comboId": "hafizuddin-assets-combo",
+      "style": {
+        "fill": "#FFE5B4",
+        "stroke": "#FFC107",
+        "lineWidth": 1
+      }
+    },
+    {
+      "id": "hafizuddin-asset-car",
+      "label": "Perodua Ativa",
+      "assetType": "Vehicle",
+      "value": "MYR 300,000.00",
+      "plateNumber": "ABC 1234",
+      "comboId": "hafizuddin-assets-combo",
+      "style": {
+        "fill": "#E6E6FA",
+        "stroke": "#9370DB",
+        "lineWidth": 1
+      }
+    },
+    {
+      "id": "hafizuddin-company-acme",
+      "label": "Acme Corp",
+      "companyName": "Acme Corporation",
+      "role": "Senior Consultant",
+      "startDate": "2010",
+      "endDate": "2015",
+      "comboId": "hafizuddin-company-combo",
+      "style": {
+        "fill": "#D1ECF1",
+        "stroke": "#17A2B8",
+        "lineWidth": 1
+      }
+    },
+    {
+      "id": "hafizuddin-company-globex",
+      "label": "Globex Inc.",
+      "companyName": "Globex Incorporated",
+      "role": "Director of Operations",
+      "startDate": "2015",
+      "endDate": "Present",
+      "comboId": "hafizuddin-company-combo",
+      "style": {
+        "fill": "#D1ECF1",
+        "stroke": "#17A2B8",
+        "lineWidth": 1
+      }
+    },
+    {
+      "id": "hafizuddin-account-boa-cc",
+      "label": "Bank Islam (Credit Card)",
+      "bankName": "Bank Islam",
+      "accountType": "Credit Card",
+      "accountNumber": "1234567890",
+      "creditUsed": "MYR 1234.56",
+      "comboId": "hafizuddin-account-combo",
+      "style": {
+        "fill": "#D4EDDA",
+        "stroke": "#28A745",
+        "lineWidth": 1
+      }
+    },
+    {
+      "id": "hafizuddin-account-boa-dc",
+      "label": "Maybank (Debit Card)",
+      "bankName": "Maybank",
+      "accountType": "Debit Card",
+      "accountNumber": "0987654321",
+      "balance": "MYR 9876.54",
+      "comboId": "hafizuddin-account-combo",
+      "style": {
+        "fill": "#D4EDDA",
+        "stroke": "#28A745",
+        "lineWidth": 1
+      }
+    },
+    {
+      "id": "hafizuddin-account-chase-cc",
+      "label": "Maybank (Credit Card)",
+      "bankName": "Maybank",
+      "accountType": "Credit Card",
+      "accountNumber": "1122334455",
+      "creditUsed": "MYR 2345.67",
+      "comboId": "hafizuddin-account-combo",
+      "style": {
+        "fill": "#D4EDDA",
+        "stroke": "#28A745",
+        "lineWidth": 1
+      }
+    },
+    {
+      "id": "hafizuddin-account-chase-dc",
+      "label": "RHB (Debit Card)",
+      "bankName": "RHB",
+      "accountType": "Debit Card",
+      "accountNumber": "5544332211",
+      "balance": "MYR 8765.43",
+      "comboId": "hafizuddin-account-combo",
+      "style": {
+        "fill": "#D4EDDA",
+        "stroke": "#28A745",
+        "lineWidth": 1
+      }
+    },
+    {
+      "id": "hafizuddin-account-wf-cc",
+      "label": "RHB (Credit Card)",
+      "bankName": "RHB",
+      "accountType": "Credit Card",
+      "accountNumber": "9988776655",
+      "creditUsed": "MYR 3456.78",
+      "comboId": "hafizuddin-account-combo",
+      "style": {
+        "fill": "#D4EDDA",
+        "stroke": "#28A745",
+        "lineWidth": 1
+      }
+    },
+    {
+      "id": "hafizuddin-account-wf-dc",
+      "label": "Bank Islam (Debit Card)",
+      "bankName": "Bank Islam",
+      "accountType": "Debit Card",
+      "accountNumber": "4455667788",
+      "balance": "MYR 7654.32",
+      "comboId": "hafizuddin-account-combo",
+      "style": {
+        "fill": "#D4EDDA",
+        "stroke": "#28A745",
+        "lineWidth": 1
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "father",
+      "target": "mother",
+      "type": "undirected",
+      "label": "Spouse",
+      "relation": "spouse",
+      "style": {
+        "lineWidth": 2,
+        "stroke": "#9C27B0"
+      }
+    },
+    {
+      "source": "parents-combo",
+      "target": "offspring-1",
+      "type": "directed",
+      "label": "Parent-Child",
+      "relation": "parent-child",
+      "style": {
+        "lineWidth": 1,
+        "stroke": "#2196F3",
+        "endArrow": true
+      }
+    },
+    {
+      "source": "offspring-1",
+      "target": "offspring-1-spouse",
+      "type": "undirected",
+      "label": "Spouse",
+      "relation": "spouse",
+      "style": {
+        "lineWidth": 2,
+        "stroke": "#9C27B0"
+      }
+    },
+    {
+      "source": "parents-combo",
+      "target": "offspring-2",
+      "type": "directed",
+      "label": "Parent-Child",
+      "relation": "parent-child",
+      "style": {
+        "lineWidth": 1,
+        "stroke": "#2196F3",
+        "endArrow": true
+      }
+    },
+    {
+      "source": "offspring-2",
+      "target": "offspring-2-spouse",
+      "type": "undirected",
+      "label": "Spouse",
+      "relation": "spouse",
+      "style": {
+        "lineWidth": 2,
+        "stroke": "#9C27B0"
+      }
+    },
+    {
+      "source": "parents-combo",
+      "target": "offspring-3",
+      "type": "directed",
+      "label": "Parent-Child",
+      "relation": "parent-child",
+      "style": {
+        "lineWidth": 1,
+        "stroke": "#2196F3",
+        "endArrow": true
+      }
+    },
+    {
+      "source": "offspring-3",
+      "target": "offspring-3-spouse",
+      "type": "undirected",
+      "label": "Spouse",
+      "relation": "spouse",
+      "style": {
+        "lineWidth": 2,
+        "stroke": "#9C27B0"
+      }
+    },
+    {
+      "source": "parents-combo",
+      "target": "offspring-4",
+      "type": "directed",
+      "label": "Parent-Child",
+      "relation": "parent-child",
+      "style": {
+        "lineWidth": 1,
+        "stroke": "#2196F3",
+        "endArrow": true
+      }
+    },
+    {
+      "source": "offspring-4",
+      "target": "offspring-4-spouse",
+      "type": "undirected",
+      "label": "Spouse",
+      "relation": "spouse",
+      "style": {
+        "lineWidth": 2,
+        "stroke": "#9C27B0"
+      }
+    },
+    {
+      "source": "parents-combo",
+      "target": "offspring-5",
+      "type": "directed",
+      "label": "Parent-Child",
+      "relation": "parent-child",
+      "style": {
+        "lineWidth": 1,
+        "stroke": "#2196F3",
+        "endArrow": true
+      }
+    },
+    {
+      "source": "offspring-5",
+      "target": "offspring-5-spouse",
+      "type": "undirected",
+      "label": "Spouse",
+      "relation": "spouse",
+      "style": {
+        "lineWidth": 2,
+        "stroke": "#9C27B0"
+      }
+    },
+    {
+      "source": "parents-combo",
+      "target": "offspring-6",
+      "type": "directed",
+      "label": "Parent-Child",
+      "relation": "parent-child",
+      "style": {
+        "lineWidth": 1,
+        "stroke": "#2196F3",
+        "endArrow": true
+      }
+    },
+    {
+      "source": "offspring-6",
+      "target": "offspring-6-spouse",
+      "type": "undirected",
+      "label": "Spouse",
+      "relation": "spouse",
+      "style": {
+        "lineWidth": 2,
+        "stroke": "#9C27B0"
+      }
+    },
+    {
+      "source": "parents-combo",
+      "target": "offspring-7",
+      "type": "directed",
+      "label": "Parent-Child",
+      "relation": "parent-child",
+      "style": {
+        "lineWidth": 1,
+        "stroke": "#2196F3",
+        "endArrow": true
+      }
+    },
+    {
+      "source": "offspring-7",
+      "target": "offspring-7-spouse",
+      "type": "undirected",
+      "label": "Spouse",
+      "relation": "spouse",
+      "style": {
+        "lineWidth": 2,
+        "stroke": "#9C27B0"
+      }
+    },
+    {
+      "source": "offspring-3",
+      "target": "hafizuddin-assets-combo",
+      "type": "directed",
+      "label": "Owns Assets",
+      "relation": "owns-assets",
+      "style": {
+        "lineWidth": 1,
+        "stroke": "#28A745",
+        "endArrow": true
+      }
+    },
+    {
+      "source": "offspring-3",
+      "target": "hafizuddin-company-combo",
+      "type": "directed",
+      "label": "Worked At",
+      "relation": "worked-at",
+      "style": {
+        "lineWidth": 1,
+        "stroke": "#007BFF",
+        "endArrow": true
+      }
+    },
+    {
+      "source": "offspring-3",
+      "target": "hafizuddin-account-combo",
+      "type": "directed",
+      "label": "Has Accounts",
+      "relation": "has-accounts",
+      "style": {
+        "lineWidth": 1,
+        "stroke": "#FFC107",
+        "endArrow": true
+      }
+    }
+  ],
+  "combos": [
+    {
+      "id": "parents-combo",
+      "label": "Parents",
+      "style": {
+        "fill": "#BBDEFB",
+        "stroke": "#2196F3",
+        "lineWidth": 2
+      }
+    },
+    {
+      "id": "combo-offspring-1",
+      "label": "Ahmad Faiz's Family",
+      "style": {
+        "fill": "#E0F2F7",
+        "stroke": "#03A9F4",
+        "lineWidth": 1
+      }
+    },
+    {
+      "id": "combo-offspring-2",
+      "label": "Muhammad Iqbal's Family",
+      "style": {
+        "fill": "#E0F2F7",
+        "stroke": "#03A9F4",
+        "lineWidth": 1
+      }
+    },
+    {
+      "id": "combo-offspring-3",
+      "label": "Hafizuddin's Family",
+      "style": {
+        "fill": "#E0F2F7",
+        "stroke": "#03A9F4",
+        "lineWidth": 1
+      }
+    },
+    {
+      "id": "combo-offspring-4",
+      "label": "Nur Aisyah's Family",
+      "style": {
+        "fill": "#E0F2F7",
+        "stroke": "#03A9F4",
+        "lineWidth": 1
+      }
+    },
+    {
+      "id": "combo-offspring-5",
+      "label": "Siti Hajar's Family",
+      "style": {
+        "fill": "#E0F2F7",
+        "stroke": "#03A9F4",
+        "lineWidth": 1
+      }
+    },
+    {
+      "id": "combo-offspring-6",
+      "label": "Balqis Imani's Family",
+      "style": {
+        "fill": "#E0F2F7",
+        "stroke": "#03A9F4",
+        "lineWidth": 1
+      }
+    },
+    {
+      "id": "combo-offspring-7",
+      "label": "Aina Sofea's Family",
+      "style": {
+        "fill": "#E0F2F7",
+        "stroke": "#03A9F4",
+        "lineWidth": 1
+      }
+    },
+    {
+      "id": "hafizuddin-assets-combo",
+      "label": "Hafizuddin's Assets",
+      "style": {
+        "fill": "#D4EDDA",
+        "stroke": "#28A745",
+        "lineWidth": 1
+      }
+    },
+    {
+      "id": "hafizuddin-company-combo",
+      "label": "Hafizuddin's Company History",
+      "style": {
+        "fill": "#CCE5FF",
+        "stroke": "#007BFF",
+        "lineWidth": 1
+      }
+    },
+    {
+      "id": "hafizuddin-account-combo",
+      "label": "Hafizuddin's Account Details",
+      "style": {
+        "fill": "#FFF3CD",
+        "stroke": "#FFC107",
+        "lineWidth": 1
+      }
+    }
+  ]
+}

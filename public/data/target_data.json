@@ -1,0 +1,72 @@
+[
+  {
+    "icNumber": "900101-14-5678",
+    "fullName": "Ahmad bin Abdullah",
+    "age": 34,
+    "birthDate": "1990-01-01",
+    "currentAddress": "No. 10, Jalan Kenanga, Taman Impian, 40000 Shah Alam, Selangor"
+  },
+  {
+    "icNumber": "920315-01-1234",
+    "fullName": "Siti Nurhaliza binti Ismail",
+    "age": 32,
+    "birthDate": "1992-03-15",
+    "currentAddress": "Lot 22, Kampung Melati, 80000 Johor Bahru, Johor"
+  },
+  {
+    "icNumber": "880720-08-9012",
+    "fullName": "Chong Wei Liang",
+    "age": 36,
+    "birthDate": "1988-07-20",
+    "currentAddress": "Unit A-5-3, Pangsapuri Harmoni, 50450 Kuala Lumpur"
+  },
+  {
+    "icNumber": "951105-07-3456",
+    "fullName": "Priya a/p Krishnan",
+    "age": 29,
+    "birthDate": "1995-11-05",
+    "currentAddress": "No. 33, Lorong Anggerik, Taman Indah, 10450 George Town, Pulau Pinang"
+  },
+  {
+    "icNumber": "910922-10-7890",
+    "fullName": "Muhammad Ali bin Hassan",
+    "age": 33,
+    "birthDate": "1991-09-22",
+    "currentAddress": "Lot 15, Jalan Cempaka, Bandar Baru, 70300 Seremban, Negeri Sembilan"
+  },
+  {
+    "icNumber": "930410-03-2345",
+    "fullName": "Lim Mei Ling",
+    "age": 31,
+    "birthDate": "1993-04-10",
+    "currentAddress": "No. 8, Persiaran Bayu, Taman Permai, 30020 Ipoh, Perak"
+  },
+  {
+    "icNumber": "870228-04-6789",
+    "fullName": "Saravanan a/l Muthu",
+    "age": 37,
+    "birthDate": "1987-02-28",
+    "currentAddress": "Blok C, Flat Ria, Jalan Bukit, 25000 Kuantan, Pahang"
+  },
+  {
+    "icNumber": "940601-13-0123",
+    "fullName": "Nurul Huda binti Ahmad",
+    "age": 30,
+    "birthDate": "1994-06-01",
+    "currentAddress": "No. 2, Lorong Mawar, Taman Bahagia, 15050 Kota Bharu, Kelantan"
+  },
+  {
+    "icNumber": "891010-12-4567",
+    "fullName": "Tan Kim Seng",
+    "age": 35,
+    "birthDate": "1989-10-10",
+    "currentAddress": "Jalan Desa 1, Taman Desa, 93050 Kuching, Sarawak"
+  },
+  {
+    "icNumber": "961225-16-8901",
+    "fullName": "Farah Adila binti Razali",
+    "age": 28,
+    "birthDate": "1996-12-25",
+    "currentAddress": "Lot 7, Kampung Sejahtera, 88200 Kota Kinabalu, Sabah"
+  }
+]

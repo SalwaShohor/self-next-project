@@ -65,20 +65,6 @@ export default function Page() {
               <div className="mb-4 flex w-full place-items-center justify-center">
                 <AutoAdaptLabelTable />
               </div>
-              {/* <div className="grid grid-cols-1 gap-2 text-sm text-blue-100 md:grid-cols-2">
-                <p>
-                  <strong>Date of Birth:</strong> January 1, 1980
-                </p>
-                <p>
-                  <strong>Location:</strong> San Francisco, CA
-                </p>
-                <p>
-                  <strong>Email:</strong> john.doe@example.com
-                </p>
-                <p>
-                  <strong>Phone:</strong> (123) 456-7890
-                </p>
-              </div> */}
             </div>
 
             <div className="flex border-b border-gray-200 bg-gray-50">

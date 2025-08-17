@@ -1,3 +1,4 @@
+"use-client";
 import { TrashIcon } from "@/assets/icons";
 import {
   Table,
@@ -9,21 +10,22 @@ import {
 } from "@/components/ui/table";
 import { cn } from "@/lib/utils";
 import dayjs from "dayjs";
-import { getInvoiceTableData } from "./fetch";
+import { getUserTableData } from "./fetch";
 import { DownloadIcon, PreviewIcon } from "./icons";
 
-export async function InvoiceTable() {
-  const data = await getInvoiceTableData();
+export async function UserTable() {
+  const data = await getUserTableData();
 
   return (
     <div className="rounded-[10px] p-4 dark:border-dark-3 dark:bg-gray-dark dark:shadow-card sm:p-7.5">
       <Table>
         <TableHeader>
           <TableRow className="border-none bg-[#F7F9FC] dark:bg-dark-2 [&>th]:py-4 [&>th]:text-base [&>th]:text-dark [&>th]:dark:text-white">
-            <TableHead className="min-w-[155px] xl:pl-7.5">Package</TableHead>
-            <TableHead>Invoice Date</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead className="text-right xl:pr-7.5">Actions</TableHead>
+            <TableHead className="min-w-[155px] xl:pl-7.5">Full Name</TableHead>
+            <TableHead>IC Number</TableHead>
+            <TableHead>Email</TableHead>
+            <TableHead>Role</TableHead>
+            <TableHead>Action</TableHead>
           </TableRow>
         </TableHeader>
 
@@ -31,20 +33,17 @@ export async function InvoiceTable() {
           {data.map((item, index) => (
             <TableRow key={index} className="border-[#eee] dark:border-dark-3">
               <TableCell className="min-w-[155px] xl:pl-7.5">
-                <h5 className="text-dark dark:text-white">{item.name}</h5>
-                <p className="mt-[3px] text-body-sm font-medium">
-                  ${item.price}
-                </p>
+                {/* <h5 className="text-dark dark:text-white">{item.name}</h5> */}
+                <p className="text-dark dark:text-white">{item.fullName}</p>
               </TableCell>
 
               <TableCell>
-                <p className="text-dark dark:text-white">
-                  {dayjs(item.date).format("MMM DD, YYYY")}
-                </p>
+                <p className="text-dark dark:text-white">{item.icNumber}</p>
               </TableCell>
 
               <TableCell>
-                <div
+                <p className="text-dark dark:text-white">{item.email}</p>
+                {/* <div
                   className={cn(
                     "max-w-fit rounded-full px-3.5 py-1 text-sm font-medium",
                     {
@@ -58,11 +57,11 @@ export async function InvoiceTable() {
                   )}
                 >
                   {item.status}
-                </div>
+                </div> */}
               </TableCell>
 
               <TableCell className="xl:pr-7.5">
-                <div className="flex items-center justify-end gap-x-3.5">
+                {/* <div className="flex items-center justify-end gap-x-3.5">
                   <button className="hover:text-primary">
                     <span className="sr-only">View Invoice</span>
                     <PreviewIcon />
@@ -77,6 +76,25 @@ export async function InvoiceTable() {
                     <span className="sr-only">Download Invoice</span>
                     <DownloadIcon />
                   </button>
+                </div> */}
+                <p className="text-dark dark:text-white">{item.role}</p>
+              </TableCell>
+              <TableCell className="xl:pr-7.5">
+                <div className="flex items-center justify-start gap-x-3.5">
+                  <button className="hover:text-primary">
+                    <span className="sr-only">View Invoice</span>
+                    <PreviewIcon />
+                  </button>
+
+                  <button className="hover:text-primary">
+                    <span className="sr-only">Delete Invoice</span>
+                    <TrashIcon />
+                  </button>
+
+                  {/* <button className="hover:text-primary">
+                    <span className="sr-only">Download Invoice</span>
+                    <DownloadIcon />
+                  </button> */}
                 </div>
               </TableCell>
             </TableRow>
