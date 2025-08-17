@@ -3,7 +3,7 @@ stages:
   - push
 
 variables:
-  DOCKER_IMAGE: "registry.gitlab.com/sitisalwa/self-nextjs-project"
+  DOCKER_IMAGE: registry.gitlab.com/sitisalwa/self-nextjs-project
 
 before_script:
   # Authenticate with GitLab Container Registry
