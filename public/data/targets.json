@@ -1,0 +1,78 @@
+[{
+  "_id": {
+    "$oid": "689edd29a024eafc0516837f"
+  },
+  "icNumber": "900101-14-5678",
+  "fullName": "Ahmad bin Abdullah",
+  "age": 34,
+  "birthDate": {
+    "$date": "1990-01-01T00:00:00.000Z"
+  },
+  "currentAddress": "No. 10, Jalan Kenanga, Taman Impian, 40000 Shah Alam, Selangor",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "689ee429a024eafc05168382"
+  },
+  "icNumber": "920315-01-1234",
+  "fullName": "Siti Nurhaliza binti Ismail",
+  "age": 32,
+  "birthDate": {
+    "$date": "1992-03-15T00:00:00.000Z"
+  },
+  "currentAddress": "Lot 22, Kampung Melati, 80000 Johor Bahru, Johor",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68a15861b085121a89cd16be"
+  },
+  "icNumber": "1234567890",
+  "fullName": "John Doe",
+  "age": 30,
+  "birthDate": {
+    "$date": "1995-05-15T00:00:00.000Z"
+  },
+  "currentAddress": "123 Street",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68a1588ab085121a89cd16c0"
+  },
+  "icNumber": "1234567890",
+  "fullName": "John Doe",
+  "age": 30,
+  "birthDate": {
+    "$date": "1995-05-15T00:00:00.000Z"
+  },
+  "currentAddress": "123 Street",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68a15eab5e62ef2d138b6983"
+  },
+  "icNumber": "951105-07-3456",
+  "fullName": "Priya a/p Krishnan",
+  "age": 29,
+  "birthDate": {
+    "$date": "1995-11-05T00:00:00.000Z"
+  },
+  "currentAddress": "No. 33, Lorong Anggerik, Taman Indah, 10450 George Town, Pulau Pinang",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68a2ae1c794cae3c592bffd7"
+  },
+  "icNumber": "930410-03-2345",
+  "fullName": "Lim Mei Ling",
+  "age": 31,
+  "birthDate": {
+    "$date": "1993-04-10T00:00:00.000Z"
+  },
+  "currentAddress": "No. 8, Persiaran Bayu, Taman Permai, 30020 Ipoh, Perak",
+  "__v": 0
+}]
