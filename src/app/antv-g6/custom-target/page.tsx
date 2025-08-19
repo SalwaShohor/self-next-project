@@ -517,369 +517,92 @@ export default function Page() {
     const loadGraph = async () => {
       if (
         !isG6Loaded ||
-        !currentContainer || // Use the captured variable
+        !currentContainer ||
         typeof window.G6 === "undefined"
       ) {
         return;
       }
 
-      window.G6.registerNode(
-        "circle-with-image",
-        {
-          draw(cfg: NodeConfig, group: G6Group) {
-            const r = cfg.size / 2;
-            const keyShape = group.addShape("circle", {
-              attrs: {
-                x: 0,
-                y: 0,
-                r: r,
-                fill: cfg.style.fill,
-                stroke: cfg.style.stroke,
-                lineWidth: cfg.style.lineWidth,
-              },
-              name: "circle-keyShape",
-              draggable: true,
-            });
+      try {
+        // Fetch JSON file from public folder
+        const res = await fetch("/data/family_tree_data.json");
 
-            if (cfg.img) {
-              const imgSize = r * 1.2;
-              group.addShape("image", {
-                attrs: {
-                  x: -imgSize / 2,
-                  y: -imgSize / 2,
-                  width: imgSize,
-                  height: imgSize,
-                  img: cfg.img,
-                },
-                name: "node-image",
-                draggable: true,
-              });
-            }
+        if (!res.ok) {
+          throw new Error(
+            `Failed to fetch family-tree.json: ${res.statusText}`,
+          );
+        }
 
-            if (cfg.label) {
-              group.addShape("text", {
-                attrs: {
-                  x: 0,
-                  y: r + 10,
-                  textAlign: "center",
-                  textBaseline: "top",
-                  text: cfg.label,
-                  fill: cfg.labelCfg.style.fill,
-                  fontSize: cfg.labelCfg.style.fontSize,
-                },
-                name: "node-label",
-                draggable: true,
-              });
-            }
-            return keyShape;
+        const data = await res.json();
+
+        if (!isMounted) return;
+
+        if (graphRef.current) {
+          graphRef.current.destroy();
+          graphRef.current = null;
+        }
+
+        const Graph = window.G6.Graph;
+
+        const newGraph = new Graph({
+          container: currentContainer,
+          width: currentContainer.offsetWidth,
+          height: currentContainer.offsetHeight,
+          fitView: true,
+          fitViewPadding: 20,
+          modes: {
+            default: ["drag-canvas", "zoom-canvas", "drag-node", "drag-combo"],
           },
-          update: undefined,
-        },
-        "circle",
-      );
+          layout: {
+            type: "force",
+            animated: true,
+            linkDistance: 100,
+            preventOverlap: true,
+            nodeStrength: -30,
+            edgeStrength: 0.1,
+            comboStrength: 20,
+            comboPadding: 10,
+          },
+          defaultNode: {
+            type: "circle-with-image",
+            size: 40,
+            style: { fill: "#C6E5FF", stroke: "#5B8FF9", lineWidth: 2 },
+            labelCfg: {
+              position: "bottom",
+              style: { fill: "#000", fontSize: 12 },
+            },
+          },
+          defaultEdge: {
+            type: "line",
+            style: { stroke: "#A3B1BF", lineWidth: 1, endArrow: true },
+            labelCfg: {
+              autoRotate: true,
+              refY: -10,
+              style: { fill: "#000", fontSize: 10 },
+            },
+          },
+          defaultCombo: {
+            type: "circle",
+            size: [60, 20],
+            labelCfg: {
+              position: "top",
+              style: { fill: "#000", fontSize: 12 },
+            },
+            style: {
+              fill: "#BBDEFB",
+              stroke: "#2196F3",
+              lineWidth: 2,
+              opacity: 0.8,
+            },
+          },
+          data,
+        });
 
-      //   const data = await fetchData(); // Fetch data from JSON file
-      const res = await fetch("/api/family-tree");
-      const data = await res.json();
-
-      if (!isMounted) return;
-
-      if (graphRef.current) {
-        graphRef.current.destroy();
-        graphRef.current = null;
+        newGraph.render();
+        graphRef.current = newGraph;
+      } catch (error) {
+        console.error("Error loading graph:", error);
       }
-
-      const Graph = window.G6.Graph;
-
-      const newGraph = new Graph({
-        // Use a temporary variable for initialization
-        container: currentContainer, // Use the captured variable
-        width: currentContainer.offsetWidth, // Use the captured variable
-        height: currentContainer.offsetHeight, // Use the captured variable
-        fitView: true,
-        fitViewPadding: 20,
-        // Add combo behaviors
-        modes: {
-          default: ["drag-canvas", "zoom-canvas", "drag-node", "drag-combo"],
-        },
-        layout: {
-          type: "force",
-          animated: true,
-          linkDistance: 100,
-          preventOverlap: true,
-          nodeStrength: -30,
-          edgeStrength: 0.1,
-          // Combo layout configuration
-          comboStrength: 20,
-          comboPadding: 10,
-        },
-        defaultNode: {
-          type: "circle-with-image",
-          size: 40,
-          style: {
-            fill: "#C6E5FF",
-            stroke: "#5B8FF9",
-            lineWidth: 2,
-          },
-          labelCfg: {
-            position: "bottom",
-            style: {
-              fill: "#000",
-              fontSize: 12,
-            },
-          },
-        },
-        defaultEdge: {
-          type: "line",
-          style: {
-            stroke: "#A3B1BF",
-            lineWidth: 1,
-            endArrow: true,
-          },
-          // Added labelCfg to make edge labels horizontal and prevent overlap
-          labelCfg: {
-            autoRotate: true, // This makes the label follow the edge's degree
-            refY: -10, // Offset the label vertically from the edge line (negative for higher)
-            style: {
-              fill: "#000",
-              fontSize: 10,
-            },
-          },
-        },
-        // Default combo configuration
-        defaultCombo: {
-          type: "circle",
-          size: [60, 20], // Default width and height for combo
-          labelCfg: {
-            position: "top",
-            style: {
-              fill: "#000",
-              fontSize: 12,
-            },
-          },
-          style: {
-            fill: "#BBDEFB",
-            stroke: "#2196F3",
-            lineWidth: 2,
-            opacity: 0.8,
-          },
-        },
-        data,
-      });
-
-      newGraph.render();
-      graphRef.current = newGraph; // Assign to ref after successful creation
-
-      newGraph.on("node:mouseenter", (evt: any) => {
-        // Use any for evt as G6 event types are complex
-        const node = evt.item;
-        newGraph.setItemState(node, "hover", true);
-      });
-
-      newGraph.on("node:mouseleave", (evt: any) => {
-        const node = evt.item;
-        newGraph.setItemState(node, "hover", false);
-      });
-
-      newGraph.on("edge:mouseenter", (evt: any) => {
-        const edge = evt.item;
-        const currentSelectedItem = selectedItemRef.current;
-        if (
-          currentSelectedItem &&
-          currentSelectedItem.type === "edge" &&
-          edge.get("model").id === currentSelectedItem.data.id
-        ) {
-          return;
-        }
-        newGraph.setItemState(edge, "hover", true);
-      });
-
-      newGraph.on("edge:mouseleave", (evt: any) => {
-        const edge = evt.item;
-        const currentSelectedItem = selectedItemRef.current;
-        if (
-          currentSelectedItem &&
-          currentSelectedItem.type === "edge" &&
-          edge.get("model").id === currentSelectedItem.data.id
-        ) {
-          return;
-        }
-        newGraph.setItemState(edge, "hover", false);
-      });
-
-      newGraph.node((node: G6NodeItem) => {
-        // Use G6NodeItem here
-        return {
-          style: {
-            fill: node.style.fill || "#C6E5FF",
-            stroke: node.style.stroke || "#5B8FF9",
-            lineWidth: 2,
-          },
-          states: {
-            hover: {
-              stroke: "#FF9900",
-              lineWidth: 3,
-            },
-            selected: {
-              stroke: "#1890FF",
-              lineWidth: 3,
-            },
-          },
-        };
-      });
-
-      newGraph.edge((edge: G6EdgeItem) => {
-        // Use G6EdgeItem here
-        return {
-          style: {
-            stroke: "#A3B1BF",
-            lineWidth: 1,
-            endArrow: true,
-          },
-          states: {
-            hover: {
-              stroke: "#FF9900",
-              lineWidth: 2,
-            },
-            selected: {
-              stroke: "#1890FF",
-              lineWidth: 2,
-            },
-          },
-          // Ensure labelCfg is applied to individual edges if needed
-          labelCfg: {
-            autoRotate: true,
-            refY: -10, // Offset the label vertically from the edge line (negative for higher)
-            style: {
-              fill: "#000",
-              fontSize: 10,
-            },
-          },
-        };
-      });
-
-      // Combo interactions
-      newGraph.on("combo:mouseenter", (evt: any) => {
-        const combo = evt.item;
-        newGraph.setItemState(combo, "hover", true);
-      });
-
-      newGraph.on("combo:mouseleave", (evt: any) => {
-        const combo = evt.item;
-        newGraph.setItemState(combo, "hover", false);
-      });
-
-      newGraph.on("combo:click", (evt: any) => {
-        const combo = evt.item;
-        const model = combo.get("model");
-
-        const currentSelectedItem = selectedItemRef.current;
-
-        if (graphRef.current && currentSelectedItem) {
-          const prevItem = graphRef.current.findById(
-            currentSelectedItem.data.id,
-          );
-          if (prevItem) {
-            graphRef.current.setItemState(prevItem, "selected", false);
-          }
-        }
-
-        setSelectedItem({ type: "combo", data: model }); // Set type to combo
-        newGraph.setItemState(combo, "selected", true);
-        if (playingAudioIdRef.current && synthRef.current) {
-          synthRef.current.triggerRelease();
-          setPlayingAudioId(null);
-          if (audioTimeoutRef.current) clearTimeout(audioTimeoutRef.current);
-        }
-      });
-
-      newGraph.on("node:click", (evt: any) => {
-        const node = evt.item;
-        const model = node.get("model");
-
-        const currentSelectedItem = selectedItemRef.current;
-
-        if (graphRef.current && currentSelectedItem) {
-          const prevItem = graphRef.current.findById(
-            currentSelectedItem.data.id,
-          );
-          if (prevItem) {
-            graphRef.current.setItemState(prevItem, "selected", false);
-          }
-        }
-
-        setSelectedItem({ type: "node", data: model });
-        newGraph.setItemState(node, "selected", true);
-        if (playingAudioIdRef.current && synthRef.current) {
-          // Added null check for synthRef.current
-          synthRef.current.triggerRelease();
-          setPlayingAudioId(null);
-          if (audioTimeoutRef.current) clearTimeout(audioTimeoutRef.current); // Added null check
-        }
-      });
-
-      newGraph.on("edge:click", (evt: any) => {
-        const edge = evt.item;
-        const model = edge.get("model");
-
-        const currentSelectedItem = selectedItemRef.current;
-
-        if (graphRef.current && currentSelectedItem) {
-          const prevItem = graphRef.current.findById(
-            currentSelectedItem.data.id,
-          );
-          if (prevItem) {
-            graphRef.current.setItemState(prevItem, "selected", false);
-          }
-        }
-
-        setSelectedItem({ type: "edge", data: model });
-        newGraph.setItemState(edge, "selected", true);
-        if (playingAudioIdRef.current && synthRef.current) {
-          // Added null check for synthRef.current
-          synthRef.current.triggerRelease();
-          setPlayingAudioId(null);
-          if (audioTimeoutRef.current) clearTimeout(audioTimeoutRef.current); // Added null check
-        }
-      });
-
-      newGraph.on("canvas:click", (evt: any) => {
-        if (evt.item === null) {
-          const currentSelectedItem = selectedItemRef.current;
-
-          if (graphRef.current && currentSelectedItem) {
-            const prevItem = graphRef.current.findById(
-              currentSelectedItem.data.id,
-            );
-            if (prevItem) {
-              graphRef.current.setItemState(prevItem, "selected", false);
-            }
-          }
-          setSelectedItem(null);
-          if (playingAudioIdRef.current && synthRef.current) {
-            // Added null check for synthRef.current
-            synthRef.current.triggerRelease();
-            setPlayingAudioId(null);
-            if (audioTimeoutRef.current) clearTimeout(audioTimeoutRef.current); // Added null check
-          }
-        }
-      });
-
-      const handleResize = () => {
-        if (graphRef.current && currentContainer) {
-          // Use captured variable
-          graphRef.current.changeSize(
-            currentContainer.offsetWidth,
-            currentContainer.offsetHeight,
-          );
-        }
-      };
-
-      window.addEventListener("resize", handleResize);
-
-      return () => {
-        window.removeEventListener("resize", handleResize);
-      };
     };
 
     if (isG6Loaded) {
