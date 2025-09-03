@@ -41,6 +41,9 @@ importers:
       '@sigma/edge-curve':
         specifier: ^3.1.0
         version: 3.1.0(sigma@3.0.2(graphology-types@0.24.8))
+      '@simplewebauthn/browser':
+        specifier: ^13.1.2
+        version: 13.1.2
       '@xyflow/react':
         specifier: ^12.8.2
         version: 12.8.2(@types/react@19.0.8)(immer@9.0.21)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -83,12 +86,18 @@ importers:
       graphology-types:
         specifier: ^0.24.8
         version: 0.24.8
+      js-base64:
+        specifier: ^3.7.8
+        version: 3.7.8
       jsvectormap:
         specifier: ^1.6.0
         version: 1.7.0
       localforage:
         specifier: ^1.10.0
         version: 1.10.0
+      lucide-react:
+        specifier: ^0.542.0
+        version: 0.542.0(react@19.0.0)
       mongodb:
         specifier: ^6.18.0
         version: 6.18.0
@@ -1790,6 +1799,9 @@ packages:
     resolution: {integrity: sha512-OFWkfAXEsm+X8l1K4K49cC0psB0gQ+gqxKA08HG5piNPdzrDZ5gG9Gza6htZ5AirOVwd/4/uq/gPpD5En+H+3Q==}
     peerDependencies:
       sigma: '>=3.0.0-beta.10'
+
+  '@simplewebauthn/browser@13.1.2':
+    resolution: {integrity: sha512-aZnW0KawAM83fSBUgglP5WofbrLbLyr7CoPqYr66Eppm7zO86YX6rrCjRB3hQKPrL7ATvY4FVXlykZ6w6FwYYw==}
 
   '@sinclair/typebox@0.27.8':
     resolution: {integrity: sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==}
@@ -6029,6 +6041,9 @@ packages:
     resolution: {integrity: sha512-/imKNG4EbWNrVjoNC/1H5/9GFy+tqjGBHCaSsN+P2RnPqjsLmv6UD3Ej+Kj8nBWaRAwyk7kK5ZUc+OEatnTR3A==}
     hasBin: true
 
+  js-base64@3.7.8:
+    resolution: {integrity: sha512-hNngCeKxIUQiEUN3GPJOkz4wF/YvdUdbNL9hsBcMQTkKzboD7T/q3OYOuuPZLUE6dBxSGpwhk5mwuDud7JVAow==}
+
   js-cookie@3.0.5:
     resolution: {integrity: sha512-cEiJEAEoIbWfCZYKWhVwFuvPX1gETRYPw6LlaTKoxD3s2AkXzkCjnp6h0V77ozyqj0jakteJ4YqDJT830+lVGw==}
     engines: {node: '>=14'}
@@ -6305,6 +6320,11 @@ packages:
   lru-cache@6.0.0:
     resolution: {integrity: sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==}
     engines: {node: '>=10'}
+
+  lucide-react@0.542.0:
+    resolution: {integrity: sha512-w3hD8/SQB7+lzU2r4VdFyzzOzKnUjTZIF/MQJGSSvni7Llewni4vuViRppfRAa2guOsY5k4jZyxw/i9DQHv+dw==}
+    peerDependencies:
+      react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
   lz-string@1.5.0:
     resolution: {integrity: sha512-h5bgJWpxJNswbU7qCrV0tIKQCaS3blPDrqKWx+QxzuzL1zGUzij9XCWLrSLsJPu5t+eWA/ycetzYAO5IOMcWAQ==}
@@ -12061,6 +12081,8 @@ snapshots:
   '@sigma/edge-curve@3.1.0(sigma@3.0.2(graphology-types@0.24.8))':
     dependencies:
       sigma: 3.0.2(graphology-types@0.24.8)
+
+  '@simplewebauthn/browser@13.1.2': {}
 
   '@sinclair/typebox@0.27.8': {}
 
@@ -18161,6 +18183,8 @@ snapshots:
 
   jiti@1.21.7: {}
 
+  js-base64@3.7.8: {}
+
   js-cookie@3.0.5: {}
 
   js-tokens@4.0.0: {}
@@ -18431,6 +18455,10 @@ snapshots:
   lru-cache@6.0.0:
     dependencies:
       yallist: 4.0.0
+
+  lucide-react@0.542.0(react@19.0.0):
+    dependencies:
+      react: 19.0.0
 
   lz-string@1.5.0: {}
 

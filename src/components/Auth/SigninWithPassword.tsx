@@ -1,17 +1,31 @@
 "use client";
 import { EmailIcon, PasswordIcon } from "@/assets/icons";
-import Link from "next/link";
-import React, { useState } from "react";
 import InputGroup from "../FormElements/InputGroup";
 import { Checkbox } from "../FormElements/checkbox";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
+import {
+  startAuthentication,
+  PublicKeyCredentialRequestOptionsJSON,
+  AuthenticationResponseJSON,
+} from "@simplewebauthn/browser";
 
 export default function SigninWithPassword() {
+  // A helper function to convert ArrayBuffer to Base64url string
+  const bufferToBase64url = (buf: ArrayBuffer): string => {
+    const bytes = new Uint8Array(buf);
+    return btoa(String.fromCharCode(...bytes))
+      .replace(/\+/g, "-")
+      .replace(/\//g, "_")
+      .replace(/=/g, "");
+  };
+  const router = useRouter();
   const [data, setData] = useState({
     email: process.env.NEXT_PUBLIC_DEMO_USER_MAIL || "",
     password: process.env.NEXT_PUBLIC_DEMO_USER_PASS || "",
     remember: false,
   });
-
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,19 +35,44 @@ export default function SigninWithPassword() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    // You can remove this code block
     setLoading(true);
 
-    setTimeout(() => {
+    try {
+      // 🔹 Step 1: Get WebAuthn options
+      const { data: options }: { data: PublicKeyCredentialRequestOptionsJSON } =
+        await axios.get(
+          `${process.env.NEXT_PUBLIC_API_URL}/api/auth/login-options`,
+          { params: { email: data.email } },
+        );
+
+      // 🔹 Step 2: Let the authenticator create the response
+      // The browser library automatically converts the challenge and credential IDs to ArrayBuffer
+      // from the Base64URL strings provided by the server.
+      const credentialResponse = await startAuthentication({
+        optionsJSON: options,
+      });
+
+      // 🔹 Step 3: Send WebAuthn response to backend
+      // The `credentialResponse` object is already formatted correctly and can be sent directly.
+      const verifyRes = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/login-verify`,
+        { email: data.email, credential: credentialResponse },
+      );
+      // ... (rest of the success logic)
+    } catch (webauthnError) {
+      console.error(
+        "⚠️ WebAuthn login failed, attempting password login:",
+        webauthnError,
+      );
+    } finally {
       setLoading(false);
-    }, 1000);
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleLogin}>
       <InputGroup
         type="email"
         label="Email"
@@ -70,24 +109,15 @@ export default function SigninWithPassword() {
             })
           }
         />
-
-        <Link
-          href="/auth/forgot-password"
-          className="hover:text-primary dark:text-white dark:hover:text-primary"
-        >
-          Forgot Password?
-        </Link>
       </div>
 
       <div className="mb-4.5">
         <button
           type="submit"
+          disabled={loading}
           className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-primary p-4 font-medium text-white transition hover:bg-opacity-90"
         >
-          Sign In
-          {loading && (
-            <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-solid border-white border-t-transparent dark:border-primary dark:border-t-transparent" />
-          )}
+          {loading ? "Signing In..." : "Sign In"}
         </button>
       </div>
     </form>

@@ -37,6 +37,7 @@ export default function TargetTable() {
     const fetchTargets = async () => {
       try {
         const res = await axios.get(
+          // `${process.env.NEXT_PUBLIC_API_URL}/api/target/all-target`,
           `${process.env.NEXT_PUBLIC_API_URL}/api/target/all-target`,
         );
         setTargets(res.data);

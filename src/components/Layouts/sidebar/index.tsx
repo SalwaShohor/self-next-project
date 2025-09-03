@@ -42,6 +42,11 @@ export function Sidebar() {
     });
   }, [pathname]);
 
+  // Do not render header on login page
+  if (pathname === "/auth/sign-in" || pathname === "/auth/sign-up") {
+    return null;
+  }
+
   return (
     <>
       {/* Mobile Overlay */}
