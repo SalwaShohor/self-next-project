@@ -35,10 +35,12 @@ export default function SigninWithPassword() {
     });
   };
 
+  // 
+  
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-
+  
     try {
       // 🔹 Step 1: Get WebAuthn options
       const { data: options }: { data: PublicKeyCredentialRequestOptionsJSON } =
@@ -46,26 +48,22 @@ export default function SigninWithPassword() {
           `${process.env.NEXT_PUBLIC_API_URL}/api/auth/login-options`,
           { params: { email: data.email } },
         );
-
+  
       // 🔹 Step 2: Let the authenticator create the response
-      // The browser library automatically converts the challenge and credential IDs to ArrayBuffer
-      // from the Base64URL strings provided by the server.
       const credentialResponse = await startAuthentication({
         optionsJSON: options,
       });
-
+  
       // 🔹 Step 3: Send WebAuthn response to backend
-      // The `credentialResponse` object is already formatted correctly and can be sent directly.
       const verifyRes = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/api/auth/login-verify`,
         { email: data.email, credential: credentialResponse },
       );
-
-          // ✅ If backend verifies successfully → redirect
-    if (verifyRes.data?.success) {
-      router.push("/"); // This goes to https://self-nextjs-project.onrender.com/
-    }
-      // ... (rest of the success logic)
+  
+      // ✅ If backend verifies successfully → redirect
+      if (verifyRes.data?.success) {
+        router.push("/"); // This goes to https://self-nextjs-project.onrender.com/
+      }
     } catch (webauthnError) {
       console.error(
         "⚠️ WebAuthn login failed, attempting password login:",
@@ -75,6 +73,7 @@ export default function SigninWithPassword() {
       setLoading(false);
     }
   };
+  
 
   return (
     <form onSubmit={handleLogin}>
