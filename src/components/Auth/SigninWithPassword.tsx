@@ -60,6 +60,11 @@ export default function SigninWithPassword() {
         `${process.env.NEXT_PUBLIC_API_URL}/api/auth/login-verify`,
         { email: data.email, credential: credentialResponse },
       );
+
+          // ✅ If backend verifies successfully → redirect
+    if (verifyRes.data?.success) {
+      router.push("/"); // This goes to https://self-nextjs-project.onrender.com/
+    }
       // ... (rest of the success logic)
     } catch (webauthnError) {
       console.error(
