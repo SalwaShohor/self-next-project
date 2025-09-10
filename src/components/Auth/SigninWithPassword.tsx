@@ -27,6 +27,7 @@ export default function SigninWithPassword() {
     remember: false,
   });
   const [loading, setLoading] = useState(false);
+    const [loginSuccess, setLoginSuccess] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setData({
@@ -61,9 +62,8 @@ export default function SigninWithPassword() {
       );
   
       // ✅ If backend verifies successfully → redirect
-      if (verifyRes.data?.success) {
-        // router.push("/"); // This goes to https://self-nextjs-project.onrender.com/
-         router.replace("/");
+         if (verifyRes.data?.success) {
+        setLoginSuccess(true); // ✅ only set state here
       }
     } catch (webauthnError) {
       console.error(
@@ -120,6 +120,9 @@ export default function SigninWithPassword() {
         <button
           type="submit"
           disabled={loading}
+           onClick={() => {
+            if (loginSuccess) router.replace("/"); // ✅ redirect from button
+          }}
           className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-primary p-4 font-medium text-white transition hover:bg-opacity-90"
         >
           {loading ? "Signing In..." : "Sign In"}
