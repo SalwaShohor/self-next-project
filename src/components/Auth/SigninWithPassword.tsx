@@ -62,7 +62,8 @@ export default function SigninWithPassword() {
   
       // ✅ If backend verifies successfully → redirect
       if (verifyRes.data?.success) {
-        router.push("/"); // This goes to https://self-nextjs-project.onrender.com/
+        // router.push("/"); // This goes to https://self-nextjs-project.onrender.com/
+         router.replace("/");
       }
     } catch (webauthnError) {
       console.error(
