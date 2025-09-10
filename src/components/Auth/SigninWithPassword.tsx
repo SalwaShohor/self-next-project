@@ -62,8 +62,13 @@ export default function SigninWithPassword() {
       );
 
       if (verifyRes.data?.verified) {
-  setLoginSuccess(true);
+  router.replace("/");
 }
+
+
+//       if (verifyRes.data?.verified) {
+//   setLoginSuccess(true);
+// }
   
       // ✅ If backend verifies successfully → redirect
       //    if (verifyRes.data?.success) {
@@ -124,9 +129,9 @@ export default function SigninWithPassword() {
         <button
           type="submit"
           disabled={loading}
-           onClick={() => {
-            if (loginSuccess) router.replace("/"); // ✅ redirect from button
-          }}
+          //  onClick={() => {
+          //   if (loginSuccess) router.replace("/"); // ✅ redirect from button
+          // }}
           className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-primary p-4 font-medium text-white transition hover:bg-opacity-90"
         >
           {loading ? "Signing In..." : "Sign In"}
