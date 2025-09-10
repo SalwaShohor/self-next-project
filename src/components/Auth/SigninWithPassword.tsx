@@ -60,11 +60,15 @@ export default function SigninWithPassword() {
         `${process.env.NEXT_PUBLIC_API_URL}/api/auth/login-verify`,
         { email: data.email, credential: credentialResponse },
       );
+
+      if (verifyRes.data?.verified) {
+  setLoginSuccess(true);
+}
   
       // ✅ If backend verifies successfully → redirect
-         if (verifyRes.data?.success) {
-        setLoginSuccess(true); // ✅ only set state here
-      }
+      //    if (verifyRes.data?.success) {
+      //   setLoginSuccess(true); // ✅ only set state here
+      // }
     } catch (webauthnError) {
       console.error(
         "⚠️ WebAuthn login failed, attempting password login:",
