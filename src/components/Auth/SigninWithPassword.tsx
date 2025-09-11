@@ -27,7 +27,7 @@ export default function SigninWithPassword() {
     remember: false,
   });
   const [loading, setLoading] = useState(false);
-    const [loginSuccess, setLoginSuccess] = useState(false);
+  const [loginSuccess, setLoginSuccess] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setData({
@@ -36,12 +36,12 @@ export default function SigninWithPassword() {
     });
   };
 
-  // 
-  
+  //
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-  
+
     try {
       // 🔹 Step 1: Get WebAuthn options
       const { data: options }: { data: PublicKeyCredentialRequestOptionsJSON } =
@@ -49,12 +49,12 @@ export default function SigninWithPassword() {
           `${process.env.NEXT_PUBLIC_API_URL}/api/auth/login-options`,
           { params: { email: data.email } },
         );
-  
+
       // 🔹 Step 2: Let the authenticator create the response
       const credentialResponse = await startAuthentication({
         optionsJSON: options,
       });
-  
+
       // 🔹 Step 3: Send WebAuthn response to backend
       const verifyRes = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/api/auth/login-verify`,
@@ -62,14 +62,13 @@ export default function SigninWithPassword() {
       );
 
       if (verifyRes.data?.verified) {
-  router.replace("/");
-}
+        router.replace("/");
+      }
 
+      //       if (verifyRes.data?.verified) {
+      //   setLoginSuccess(true);
+      // }
 
-//       if (verifyRes.data?.verified) {
-//   setLoginSuccess(true);
-// }
-  
       // ✅ If backend verifies successfully → redirect
       //    if (verifyRes.data?.success) {
       //   setLoginSuccess(true); // ✅ only set state here
@@ -83,7 +82,6 @@ export default function SigninWithPassword() {
       setLoading(false);
     }
   };
-  
 
   return (
     <form onSubmit={handleLogin}>
@@ -129,9 +127,6 @@ export default function SigninWithPassword() {
         <button
           type="submit"
           disabled={loading}
-          //  onClick={() => {
-          //   if (loginSuccess) router.replace("/"); // ✅ redirect from button
-          // }}
           className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-primary p-4 font-medium text-white transition hover:bg-opacity-90"
         >
           {loading ? "Signing In..." : "Sign In"}

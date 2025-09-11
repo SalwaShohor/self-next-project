@@ -17,7 +17,7 @@ export default function SignUp() {
       <div className="rounded-[10px] bg-white shadow-1 dark:bg-gray-dark dark:shadow-card">
         <div className="flex flex-wrap items-center">
           <div className="w-full">
-            <div className="w-full px-100 py-30">
+            <div className="w-full px-10 py-30 md:px-30 lg:px-80">
               <Signup />
             </div>
           </div>
