@@ -19,6 +19,7 @@
     "@antv/gi-sdk": "^3.0.0",
     "@antv/gi-theme-antd": "^0.6.11",
     "@dagrejs/dagre": "^1.1.4",
+    "@hookform/resolvers": "^5.2.2",
     "@sigma/edge-curve": "^3.1.0",
     "@simplewebauthn/browser": "^13.1.2",
     "@xyflow/react": "^12.8.2",
@@ -46,11 +47,13 @@
     "react": "19.0.0",
     "react-apexcharts": "^1.7.0",
     "react-dom": "19.0.0",
+    "react-hook-form": "^7.62.0",
     "reagraph": "^4.25.0",
     "seedrandom": "^3.0.5",
     "sigma": "^3.0.2",
     "tailwind-merge": "^2.6.0",
-    "uuid": "^11.1.0"
+    "uuid": "^11.1.0",
+    "zod": "^4.1.9"
   },
   "devDependencies": {
     "@types/chroma-js": "^3.1.1",

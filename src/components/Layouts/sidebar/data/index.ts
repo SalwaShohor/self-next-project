@@ -2,8 +2,14 @@ import * as Icons from "../icons";
 
 export const NAV_DATA = [
   {
-    label: "SIGMA",
+    label: "ANYTHING",
     items: [
+      {
+        title: "Form Validation",
+        url: "/calendar",
+        icon: Icons.Calendar,
+        items: [],
+      },
       {
         title: "edge-curve",
         icon: Icons.HomeIcon,

@@ -1,5 +1,7 @@
+"use client";
 import { cn } from "@/lib/utils";
-import { type HTMLInputTypeAttribute, useId } from "react";
+import { type HTMLInputTypeAttribute, useId, useState } from "react";
+import { Eye, EyeOff } from "lucide-react";
 
 type InputGroupProps = {
   className?: string;
@@ -33,6 +35,13 @@ const InputGroup: React.FC<InputGroupProps> = ({
 }) => {
   const id = useId();
 
+  // state for showing/hiding password
+  const [showPassword, setShowPassword] = useState(false);
+
+  //  Derived input type (text if password + showPassword, else original)
+  const isPassword = type === "password";
+  const inputType = isPassword && showPassword ? "text" : type;
+
   return (
     <div className={className}>
       <label
@@ -53,7 +62,9 @@ const InputGroup: React.FC<InputGroupProps> = ({
       >
         <input
           id={id}
-          type={type}
+          // type={type}
+          // Use derived input type
+          type={inputType}
           name={props.name}
           placeholder={placeholder}
           onChange={handleChange}
@@ -73,6 +84,22 @@ const InputGroup: React.FC<InputGroupProps> = ({
         />
 
         {icon}
+
+        {/* Added toggle button for password visibility */}
+        {isPassword && (
+          <button
+            type="button"
+            className="absolute right-10 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+            onClick={() => setShowPassword((prev) => !prev)}
+            tabIndex={-1} // don’t include in tab navigation
+          >
+            {showPassword ? (
+              <EyeOff className="h-5 w-5" />
+            ) : (
+              <Eye className="h-5 w-5" />
+            )}
+          </button>
+        )}
       </div>
     </div>
   );

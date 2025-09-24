@@ -12,6 +12,35 @@ import {
   startRegistration,
 } from "@simplewebauthn/browser";
 
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+// ✅ Define Zod schema
+const SignUpSchema = z
+  .object({
+    full_name: z.string().min(3, "Full name must be at least 3 characters"),
+    email: z.string().email("Invalid email address"),
+    password: z
+      .string()
+      .min(12, "Password must be at least 12 characters long")
+      .regex(/[A-Za-z]/, "Password must contain at least one letter")
+      .regex(/[0-9]/, "Password must contain at least one number")
+      .regex(
+        /[^A-Za-z0-9]/,
+        "Password must contain at least one special character",
+      )
+      .nonempty("Password is required"),
+    repeat_password: z.string().nonempty("Password is required"),
+    role: z.string().nonempty("Role is required"),
+  })
+  .refine((data) => data.password === data.repeat_password, {
+    path: ["repeat_password"],
+    message: "Passwords do not match",
+  });
+
+type SignUpFormData = z.infer<typeof SignUpSchema>;
+
 // The SuccessModal component provided by the user
 interface SuccessModalProps {
   isOpen: boolean;
@@ -20,7 +49,32 @@ interface SuccessModalProps {
 }
 
 export default function SignUpForm() {
+  const [data, setData] = useState<SignUpFormData>({
+    full_name: "",
+    email: "",
+    password: "",
+    repeat_password: "",
+    role: "",
+  });
+
+  // const [errors, setErrors] = useState<
+  //   Partial<Record<keyof SignUpFormData, string>>
+  // >({});
+
+  const [errors, setErrors] = useState<
+    Partial<Record<keyof typeof data, string>>
+  >({});
+
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   formState: { errors, isSubmitting },
+  //   reset,
+  // } = useForm<SignUpFormData>({
+  //   resolver: zodResolver(SignUpSchema),
+  // });
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -29,13 +83,6 @@ export default function SignUpForm() {
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
-  const [data, setData] = useState({
-    full_name: "",
-    email: "",
-    password: "",
-    repeat_password: "",
-    role: "",
-  });
 
   const [loading, setLoading] = useState(false);
 
@@ -48,110 +95,30 @@ export default function SignUpForm() {
     });
   };
 
-  // const handleRegister = async (e?: React.FormEvent) => {
-  //   if (e) e.preventDefault();
-
-  //   if (data.password !== data.repeat_password) {
-  //     alert("Passwords do not match!");
-  //     return;
-  //   }
-
-  //   try {
-  //     // 1. Get registration options
-  //     const { data: options } =
-  //       await axios.post<PublicKeyCredentialCreationOptions>(
-  //         `${process.env.NEXT_PUBLIC_API_URL}/api/auth/register-options`,
-  //         {
-  //           full_name: data.full_name,
-  //           email: data.email,
-  //           role: data.role,
-  //           password: data.password,
-  //         },
-  //         { headers: { "Content-Type": "application/json" } },
-  //       );
-
-  //     // Convert challenge and user.id to ArrayBuffer
-  //     options.challenge = Uint8Array.from(
-  //       atob(options.challenge as unknown as string),
-  //       (c) => c.charCodeAt(0),
-  //     ).buffer;
-
-  //     options.user.id = Uint8Array.from(
-  //       atob(options.user.id as unknown as string),
-  //       (c) => c.charCodeAt(0),
-  //     ).buffer;
-
-  //     if (options.excludeCredentials) {
-  //       options.excludeCredentials = options.excludeCredentials.map((cred) => ({
-  //         ...cred,
-  //         id: Uint8Array.from(atob(cred.id as unknown as string), (c) =>
-  //           c.charCodeAt(0),
-  //         ).buffer,
-  //       }));
-  //     }
-
-  //     // 2. Ask browser to create credentials
-  //     const credential = (await navigator.credentials.create({
-  //       publicKey: options,
-  //     })) as PublicKeyCredential;
-
-  //     const attestationResponse =
-  //       credential.response as AuthenticatorAttestationResponse;
-
-  //     const clientDataJSON = btoa(
-  //       String.fromCharCode(
-  //         ...new Uint8Array(attestationResponse.clientDataJSON),
-  //       ),
-  //     );
-  //     const attestationObject = btoa(
-  //       String.fromCharCode(
-  //         ...new Uint8Array(attestationResponse.attestationObject),
-  //       ),
-  //     );
-
-  //     // 3. Send credential + form data to backend for verification
-  //     const verifyRes = await axios.post(
-  //       `${process.env.NEXT_PUBLIC_API_URL}/api/auth/register-verify`,
-  //       {
-  //         user: {
-  //           full_name: data.full_name,
-  //           email: data.email,
-  //           role: data.role,
-  //           password: data.password,
-  //         },
-  //         credential: {
-  //           id: credential.id,
-  //           rawId: btoa(
-  //             String.fromCharCode(...new Uint8Array(credential.rawId)),
-  //           ),
-  //           type: credential.type,
-  //           response: {
-  //             clientDataJSON,
-  //             attestationObject,
-  //           },
-  //         },
-  //       },
-  //       { headers: { "Content-Type": "application/json" } },
-  //     );
-
-  //     if (verifyRes.status === 200) {
-  //       console.log("✅ Registration success");
-  //       handleOpenModal(); // <-- don't forget to call the function
-  //     } else {
-  //       console.error("❌ Registration failed");
-  //     }
-  //   } catch (err) {
-  //     console.error("⚠️ Registration error:", err);
-  //   }
-  // };
-
   const handleRegister = async (e?: React.FormEvent) => {
     if (e) e.preventDefault();
 
-    if (data.password !== data.repeat_password) {
-      alert("Passwords do not match!");
-      return;
+    // if (data.password !== data.repeat_password) {
+    //   alert("Passwords do not match!");
+    //   return;
+    // }
+
+    // ✅ Zod validation first
+    const parsed = SignUpSchema.safeParse(data);
+
+    if (!parsed.success) {
+      const fieldErrors: Record<string, string> = {};
+
+      parsed.error.issues.forEach((issue) => {
+        const fieldName = issue.path[0] as keyof typeof data;
+        fieldErrors[fieldName] = issue.message;
+      });
+
+      setErrors(fieldErrors);
+      return; // stop if validation fails
     }
+
+    setErrors({}); // clear errors if validation passed
 
     setLoading(true);
 
@@ -206,25 +173,31 @@ export default function SignUpForm() {
         <InputGroup
           type="text"
           label="Full Name"
-          className="mb-4 [&_input]:py-[15px]"
+          className="mb-5 [&_input]:py-[15px]"
           placeholder="Enter your full name"
           name="full_name"
           handleChange={handleChange}
           value={data.full_name}
           icon={<User size={18} />}
         />
+        {errors.full_name && (
+          <p className="-mt-3 mb-3 text-sm text-red-500">{errors.full_name}</p>
+        )}
 
         {/* Email */}
         <InputGroup
           type="email"
           label="Email"
-          className="mb-4 [&_input]:py-[15px]"
+          className="mb-5 [&_input]:py-[15px]"
           placeholder="Enter your email"
           name="email"
           handleChange={handleChange}
           value={data.email}
           icon={<EmailIcon />}
         />
+        {errors.email && (
+          <p className="-mt-3 mb-3 text-sm text-red-500">{errors.email}</p>
+        )}
 
         {/* Password */}
         <InputGroup
@@ -237,6 +210,9 @@ export default function SignUpForm() {
           value={data.password}
           icon={<PasswordIcon />}
         />
+        {errors.password && (
+          <p className="-mt-3 mb-3 text-sm text-red-500">{errors.password}</p>
+        )}
 
         {/* Repeat Password */}
         <InputGroup
@@ -249,12 +225,18 @@ export default function SignUpForm() {
           value={data.repeat_password}
           icon={<PasswordIcon />}
         />
+        {errors.repeat_password && (
+          <p className="-mt-3 mb-3 text-sm text-red-500">
+            {errors.repeat_password}
+          </p>
+        )}
 
         {/* Role */}
         <SelectGroup
           label="Role"
           name="role"
           value={data.role}
+          className="mb-5 [&_input]:py-[15px]"
           onChange={handleChange}
           options={[
             { label: "Select your role", value: "" },
@@ -262,6 +244,9 @@ export default function SignUpForm() {
             { label: "Admin", value: "admin" },
           ]}
         />
+        {errors.role && (
+          <p className="-mt-3 mb-3 text-sm text-red-500">{errors.role}</p>
+        )}
 
         <div className="mb-4.5 pt-20">
           <button
