@@ -43,19 +43,31 @@ export default function SigninWithPassword() {
     setLoading(true);
 
     try {
-      // 🔹 Step 1: Get WebAuthn options
+      // Step 1: Verify email + password first
+      const passwordCheck = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/prelogin`,
+        { email: data.email, password: data.password },
+      );
+
+      if (!passwordCheck.data?.ok) {
+        alert("Invalid email or password.");
+        setLoading(false);
+        return;
+      }
+
+      // Step 2: Get WebAuthn options (only if password is correct)
       const { data: options }: { data: PublicKeyCredentialRequestOptionsJSON } =
         await axios.get(
           `${process.env.NEXT_PUBLIC_API_URL}/api/auth/login-options`,
           { params: { email: data.email } },
         );
 
-      // 🔹 Step 2: Let the authenticator create the response
+      // Step 3: Let the authenticator create the response
       const credentialResponse = await startAuthentication({
         optionsJSON: options,
       });
 
-      // 🔹 Step 3: Send WebAuthn response to backend
+      // Step 4: Send WebAuthn response to backend
       const verifyRes = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/api/auth/login-verify`,
         { email: data.email, credential: credentialResponse },
