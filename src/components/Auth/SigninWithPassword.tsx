@@ -62,17 +62,16 @@ export default function SigninWithPassword() {
       );
 
       if (verifyRes.data?.verified) {
+        const token = verifyRes.data.token;
+
+        // ✅ Log token in console for debugging
+        console.log("🪪 JWT Token:", token);
+
+        // Store JWT in localStorage
+        localStorage.setItem("token", token);
+
         router.replace("/");
       }
-
-      //       if (verifyRes.data?.verified) {
-      //   setLoginSuccess(true);
-      // }
-
-      // ✅ If backend verifies successfully → redirect
-      //    if (verifyRes.data?.success) {
-      //   setLoginSuccess(true); // ✅ only set state here
-      // }
     } catch (webauthnError) {
       console.error(
         "⚠️ WebAuthn login failed, attempting password login:",
