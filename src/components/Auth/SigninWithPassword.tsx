@@ -123,7 +123,7 @@ export default function SigninWithPassword() {
   };
 
   return (
-    <form onSubmit={handleLogin}>
+    <form onSubmit={handlePreLogin}>
       <InputGroup
         type="email"
         label="Email"
