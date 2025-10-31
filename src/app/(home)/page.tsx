@@ -1,4 +1,3 @@
-"use client";
 import { PaymentsOverview } from "@/components/Charts/payments-overview";
 // import { UsedDevices } from "@/components/Charts/used-devices";
 import { WeeksProfit } from "@/components/Charts/weeks-profit";
@@ -10,10 +9,6 @@ import { ChatsCard } from "./_components/chats-card";
 import { OverviewCardsGroup } from "./_components/overview-cards";
 import { OverviewCardsSkeleton } from "./_components/overview-cards/skeleton";
 import { RegionLabels } from "./_components/region-labels";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-import Cookies from "js-cookie";
-import { jwtDecode } from "jwt-decode";
 
 type PropsType = {
   searchParams: Promise<{
@@ -24,27 +19,6 @@ type PropsType = {
 export default async function Home({ searchParams }: PropsType) {
   const { selected_time_frame } = await searchParams;
   const extractTimeFrame = createTimeFrameExtractor(selected_time_frame);
-  const router = useRouter();
-
-  useEffect(() => {
-    const token = Cookies.get("token");
-    if (!token) {
-      router.replace("/auth/sign-in");
-      return;
-    }
-
-    try {
-      const decoded: any = jwtDecode(token);
-      const isExpired = decoded.exp * 1000 < Date.now();
-      if (isExpired) {
-        Cookies.remove("token");
-        router.replace("/auth/sign-in");
-      }
-    } catch {
-      Cookies.remove("token");
-      router.replace("/auth/sign-in");
-    }
-  }, []);
 
   return (
     <>
@@ -64,8 +38,8 @@ export default async function Home({ searchParams }: PropsType) {
           timeFrame={extractTimeFrame("weeks_profit")?.split(":")[1]}
           className="col-span-12 xl:col-span-5"
         />
-
-        {/* <UsedDevices
+        {/* 
+        <UsedDevices
           className="col-span-12 xl:col-span-5"
           key={extractTimeFrame("used_devices")}
           timeFrame={extractTimeFrame("used_devices")?.split(":")[1]}

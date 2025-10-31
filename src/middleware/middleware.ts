@@ -9,6 +9,7 @@ export function middleware(req: NextRequest) {
 
   // ✅ Allow public routes (auth pages, static files, etc.)
   if (
+    pathname.startsWith("/") ||
     pathname.startsWith("/auth") || // login/register
     pathname.startsWith("/_next") || // nextjs internals
     pathname.startsWith("/api") || // api routes
@@ -16,6 +17,12 @@ export function middleware(req: NextRequest) {
     pathname.startsWith("/images")
   ) {
     return NextResponse.next();
+  }
+
+  // Redirect root to sign-in
+  if (pathname === "/") {
+    const signInUrl = new URL("/auth/sign-in", req.url);
+    return NextResponse.redirect(signInUrl);
   }
 
   // 🚫 If no token, redirect to login
