@@ -38,9 +38,9 @@ export default function SigninWithPassword() {
 
   //
 
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
+  const handleLogin = async (/*e: React.FormEvent*/) => {
+    // e.preventDefault();
+    // setLoading(true);
 
     try {
       // Step 1: Verify email + password first
@@ -89,6 +89,34 @@ export default function SigninWithPassword() {
         "⚠️ WebAuthn login failed, attempting password login:",
         webauthnError,
       );
+    }
+    // } finally {
+    //   setLoading(false);
+    // }
+  };
+
+  const handlePreLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      // 🧩 Step 1: Verify email & password first
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/prelogin`,
+        { email: data.email, password: data.password },
+      );
+
+      // Check response
+      if (res.data?.ok) {
+        console.log("✅ Password verified! Proceeding to WebAuthn...");
+        // 🧩 Step 2: Call WebAuthn next
+        await handleLogin();
+      } else {
+        alert("❌ Invalid email or password.");
+      }
+    } catch (err) {
+      console.error("Prelogin error:", err);
+      alert("Login failed. Please check your credentials.");
     } finally {
       setLoading(false);
     }
