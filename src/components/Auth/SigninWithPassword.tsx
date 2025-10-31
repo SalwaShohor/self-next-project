@@ -10,6 +10,7 @@ import {
   PublicKeyCredentialRequestOptionsJSON,
   AuthenticationResponseJSON,
 } from "@simplewebauthn/browser";
+import Cookies from "js-cookie";
 
 export default function SigninWithPassword() {
   // A helper function to convert ArrayBuffer to Base64url string
@@ -44,16 +45,16 @@ export default function SigninWithPassword() {
 
     try {
       // Step 1: Verify email + password first
-      const passwordCheck = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/prelogin`,
-        { email: data.email, password: data.password },
-      );
+      // const passwordCheck = await axios.post(
+      //   `${process.env.NEXT_PUBLIC_API_URL}/api/auth/prelogin`,
+      //   { email: data.email, password: data.password },
+      // );
 
-      if (!passwordCheck.data?.ok) {
-        alert("Invalid email or password.");
-        setLoading(false);
-        return;
-      }
+      // if (!passwordCheck.data?.ok) {
+      //   alert("Invalid email or password.");
+      //   setLoading(false);
+      //   return;
+      // }
 
       // Step 2: Get WebAuthn options (only if password is correct)
       const { data: options }: { data: PublicKeyCredentialRequestOptionsJSON } =
@@ -74,14 +75,31 @@ export default function SigninWithPassword() {
       );
 
       if (verifyRes.data?.verified) {
+        // const token = verifyRes.data.token;
+
+        // // ✅ Log token in console for debugging
+        // console.log("🪪 JWT Token:", token);
+
+        // // Store JWT in localStorage
+        // localStorage.setItem("token", token);
+
+        // router.replace("/");
+
         const token = verifyRes.data.token;
 
-        // ✅ Log token in console for debugging
         console.log("🪪 JWT Token:", token);
 
-        // Store JWT in localStorage
-        localStorage.setItem("token", token);
+        // 🧁 Store JWT token in cookie for 1 day
+        Cookies.set("token", token, {
+          expires: 1,
+          secure: true,
+          sameSite: "Strict",
+        });
 
+        // ❌ Remove from localStorage (optional, for cleanup)
+        localStorage.removeItem("token");
+
+        // ✅ Redirect user to home page
         router.replace("/");
       }
     } catch (webauthnError) {
